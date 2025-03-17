@@ -1,153 +1,129 @@
-2025-03-17 00:13:59,845 ERROR: Exception on /auth/login [OPTIONS] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-17 15:17:48,345 ERROR: Exception on /users/2 [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:13:59,847 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: request_id
+2025-03-17 15:18:01,873 ERROR: Exception on /users/1 [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 14:38:23,444 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: request_id
+2025-03-17 15:26:32,710 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
+2025-03-17 15:40:18,876 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
+2025-03-17 15:56:44,850 ERROR: Exception on /use/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 14:38:23,522 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: request_id
+2025-03-17 15:56:57,302 ERROR: Exception on /users/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
-                                                                ^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 14:39:29,306 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
-2025-03-17 14:39:29,560 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 14:39:29,560 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 14:39:36,549 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: request_id
+2025-03-17 15:57:15,532 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
+2025-03-17 15:57:15,671 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 15:57:15,672 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 15:57:29,982 ERROR: Exception on /users/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
-2025-03-17 14:39:36,554 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: request_id
+2025-03-17 15:59:57,460 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+2025-03-17 15:59:57,605 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 15:59:57,605 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:00:03,614 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode' | ID: c80e8989-84ed-46c8-a2d4-783aa26ccc44 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:03:50,571 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+2025-03-17 16:03:50,716 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 16:03:50,717 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:03:54,459 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: b093cbec-20d1-4d72-874f-7041b02d200f [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:05:55,066 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]

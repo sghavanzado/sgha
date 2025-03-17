@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (token) {
                 try {
                     // Usar la instancia de axios configurada
-                    const response = await axiosInstance.get('/users/profile');
+                    const response = await axiosInstance.get('/user/profile');
                     setUser(response.data);
                 } catch (error) {
                     logout();
@@ -54,6 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           localStorage.setItem('token', response.data.access_token);
           setToken(response.data.access_token);
           setUser(response.data.user);
+          navigate('/dashboard');
         } catch (error) {
           console.error('Login error:', error);
           throw error;

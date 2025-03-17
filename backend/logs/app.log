@@ -1,60 +1,20 @@
-2025-03-17 14:39:40,570 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
-2025-03-17 14:39:40,575 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    ^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'headers'
-2025-03-17 15:02:55,723 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
-2025-03-17 15:02:56,170 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 15:02:56,171 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 15:03:43,238 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
-2025-03-17 15:03:43,368 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 15:03:43,368 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 15:08:10,605 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
-2025-03-17 15:08:10,739 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 15:08:10,739 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 15:08:17,007 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
+2025-03-17 16:05:55,214 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 16:05:55,215 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:07:12,293 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: 56eeb665-e067-4877-8403-a4d11eea1507 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:07:16,916 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: 27b4dfee-81a0-4f15-b40c-c308265d1650 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:08:36,504 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+2025-03-17 16:08:36,652 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 16:08:36,652 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:08:41,796 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 917c99b0-8c05-434a-9239-b3aebb6d6063 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:15:58,995 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: d817725e-21fc-43cd-af0c-08ed7e665c65 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:17:15,750 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: e7b61c79-c4e6-4562-8dd2-607c0610ee65 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:21:58,659 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+2025-03-17 16:21:58,801 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 16:21:58,801 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:22:01,652 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: a44c5acf-bd0f-4e23-bd3c-4567a143c0ac [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:23:03,118 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: f4f8d28d-86d4-4cf5-8fe8-ce1177454970 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:24:59,723 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+2025-03-17 16:24:59,879 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 16:24:59,879 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 16:45:37,107 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 26620961-9d85-427e-9223-dd528c3c2d1b [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-17 16:51:54,632 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 388770c0-a932-426d-b8d2-5f138a4513fc [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]

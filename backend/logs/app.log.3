@@ -1,4 +1,4 @@
-2025-03-17 00:07:51,871 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+2025-03-17 14:39:40,570 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,10 +12,28 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-03-17 14:39:40,575 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
 
 During handling of the above exception, another exception occurred:
 
@@ -26,108 +44,104 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,258 ERROR: Exception on /auth/login [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 76, in security_middleware
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'headers'
+2025-03-17 15:02:55,723 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
+2025-03-17 15:02:56,170 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 15:02:56,171 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 15:03:43,238 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
+2025-03-17 15:03:43,368 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 15:03:43,368 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 15:08:10,605 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
+2025-03-17 15:08:10,739 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-17 15:08:10,739 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
+2025-03-17 15:08:17,007 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
+2025-03-17 15:13:46,870 ERROR: Exception on /users [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,263 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 125, in check_authentication
+    jwt_data = jwt.decode(token, app.config['JWT_SECRET_KEY'], algorithms=['HS256'])
+               ^^^^^^^^^^
+AttributeError: 'JWTManager' object has no attribute 'decode'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,435 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:113]
-2025-03-17 00:07:57,435 ERROR: Exception on /favicon.ico [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,436 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^
+NameError: name 'g' is not defined
+2025-03-17 15:15:07,833 ERROR: Exception on /users [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 125, in check_authentication
+    jwt_data = jwt.decode(token, app.config['JWT_SECRET_KEY'], algorithms=['HS256'])
+               ^^^^^^^^^^
+AttributeError: 'JWTManager' object has no attribute 'decode'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^
+NameError: name 'g' is not defined
+2025-03-17 15:15:35,910 ERROR: Exception on /users/1 [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 125, in check_authentication
+    jwt_data = jwt.decode(token, app.config['JWT_SECRET_KEY'], algorithms=['HS256'])
+               ^^^^^^^^^^
+AttributeError: 'JWTManager' object has no attribute 'decode'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
+    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+                                                               ^
+NameError: name 'g' is not defined

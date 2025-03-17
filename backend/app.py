@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, g, make_response
 from flask_cors import CORS
 from extensions import db, jwt, migrate
 from config import Config
@@ -7,6 +7,7 @@ from cli import register_commands
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+import uuid  # Importar uuid
 from routes import (
     auth, user_routes, product_routes, inventory_routes,
     inventory_reports_routes, order_routes, provider_routes,
@@ -33,7 +34,6 @@ def create_app():
         app.logger.addHandler(file_handler)
         app.logger.setLevel(logging.INFO)
         app.logger.info('Inicio de la aplicación')
-
 
     # Inicializar extensiones
     db.init_app(app)
@@ -70,36 +70,39 @@ def create_app():
         }), 401
 
     # Middleware de seguridad global
-    # Reemplazar el middleware de seguridad actual con este código
-    @app.after_request  # Cambiar de before_request a after_request
+    @app.after_request
     def security_middleware(response):
         """Middleware para agregar headers de seguridad a TODAS las respuestas"""
         # Headers de seguridad
         response.headers['X-Content-Type-Options'] = 'nosniff'
         response.headers['X-Frame-Options'] = 'DENY'
         response.headers['Content-Security-Policy'] = "default-src 'self'"
-    
-    # Headers CORS (solo desarrollo)
+
+        # Headers CORS (solo desarrollo)
         if app.config.get('ENV') == 'development':
             response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
             response.headers['Access-Control-Allow-Credentials'] = 'true'
-    
-        return response  # Asegurar retornar la respuesta modificada
-    
+
+        return response
+
     @app.before_request
     def handle_preflight():
         if request.method == "OPTIONS":
             response = make_response()
             response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
-            response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With") 
+            response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
             response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
             return response
-    
+
+    # Middleware para inicializar request_id
+    @app.before_request
+    def initialize_request_id():
+        g.request_id = str(uuid.uuid4())
 
     # Middleware de autenticación global
     @app.before_request
     def check_authentication():
-         # Permitir solicitudes OPTIONS sin autenticación
+        # Permitir solicitudes OPTIONS sin autenticación
         if request.method == 'OPTIONS':
             return
         # Rutas excluidas de autenticación
@@ -107,10 +110,10 @@ def create_app():
             '/auth/login',
             '/auth/refresh',
             '/auth/register',
-            '/docs', 
+            '/docs',
             '/spec'
         ]
-        
+
         if request.path in excluded_paths:
             return
 
@@ -122,21 +125,21 @@ def create_app():
 
         try:
             token = auth_header.split(" ")[1]
-            jwt_data = jwt.decode(token, app.config['JWT_SECRET_KEY'], algorithms=['HS256'])
+            jwt_data = jwt.get_jwt()  # Usar get_jwt()
             user = User.query.get(jwt_data['sub'])
-            
+
             if not user or not user.is_active:
                 raise Exception('Usuario no existe o está inactivo')
-            
+
             g.current_user = user
-            app.logger.info(f'Acceso autorizado para: {user.email} | ID: {g.request_id}')
+            app.logger.info(f'Acceso autorizado para: {user.email} | ID: {g.get('request_id', 'N/A')}')
 
         except Exception as e:
-            app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
+            app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.get('request_id', 'N/A')}')
             return jsonify({
                 'error': 'Error de autenticación',
                 'message': str(e),
-                'request_id': g.request_id
+                'request_id': g.get('request_id', 'N/A')
             }), 401
 
     # Registrar blueprints
