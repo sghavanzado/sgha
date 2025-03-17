@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, g
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 from extensions import db, jwt, migrate
 from config import Config
@@ -70,35 +70,31 @@ def create_app():
         }), 401
 
     # Middleware de seguridad global
-    @app.after_request  # Cambiar a after_request para headers en todas las respuestas
+    # Reemplazar el middleware de seguridad actual con este código
+    @app.after_request  # Cambiar de before_request a after_request
     def security_middleware(response):
-      # Headers de seguridad esenciales
-      response.headers['X-Content-Type-Options'] = 'nosniff'
-      response.headers['X-Frame-Options'] = 'DENY'
-      response.headers['Content-Security-Policy'] = "default-src 'self'"
+        """Middleware para agregar headers de seguridad a TODAS las respuestas"""
+        # Headers de seguridad
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['X-Frame-Options'] = 'DENY'
+        response.headers['Content-Security-Policy'] = "default-src 'self'"
     
-      # Headers CORS para todas las respuestas
-      response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-      response.headers['Access-Control-Allow-Credentials'] = 'true'
+    # Headers CORS (solo desarrollo)
+        if app.config.get('ENV') == 'development':
+            response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
     
-      return response
+        return response  # Asegurar retornar la respuesta modificada
     
     @app.before_request
     def handle_preflight():
-     if request.method == "OPTIONS":
-        response = make_response()
-        response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
-        response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-        return response
-
-    @app.after_request
-    def add_options_header(response):
-     if request.method == 'OPTIONS':
-        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-        response.headers['Access-Control-Max-Age'] = '600'
-        return response
+        if request.method == "OPTIONS":
+            response = make_response()
+            response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
+            response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With") 
+            response.headers.add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+            return response
+    
 
     # Middleware de autenticación global
     @app.before_request

@@ -1,4 +1,4 @@
-2025-03-17 00:07:51,871 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+2025-03-17 00:12:10,834 ERROR: Exception on /auth/login [OPTIONS] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -13,8 +13,26 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
+KeyError: 'CORS_ORIGINS'
+2025-03-17 00:12:10,842 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
+    response = self.ensure_sync(func)(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
 
 During handling of the above exception, another exception occurred:
@@ -27,10 +45,10 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,258 ERROR: Exception on /auth/login [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-17 00:12:20,167 ERROR: Exception on /auth/login [OPTIONS] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,10 +63,10 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,263 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+2025-03-17 00:12:20,169 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -63,8 +81,8 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
 
 During handling of the above exception, another exception occurred:
@@ -77,11 +95,10 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,435 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:113]
-2025-03-17 00:07:57,435 ERROR: Exception on /favicon.ico [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-17 00:13:37,033 ERROR: Exception on /auth/login [OPTIONS] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -96,10 +113,10 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,436 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+2025-03-17 00:13:37,054 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -114,8 +131,8 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'
 
 During handling of the above exception, another exception occurred:
@@ -128,6 +145,6 @@ Traceback (most recent call last):
     response = self.ensure_sync(func)(response)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+                                                                ^^^^^^^
 KeyError: 'CORS_ORIGINS'

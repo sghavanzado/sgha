@@ -1,80 +1,109 @@
-2025-03-15 20:19:40,422 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:19:40,454 ERROR: Error inicializando permisos: initialize_permissions() missing 1 required positional argument: 'app' [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:19:41,323 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:19:41,340 ERROR: Error inicializando permisos: initialize_permissions() missing 1 required positional argument: 'app' [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:19:41,985 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:19:42,002 ERROR: Error inicializando permisos: initialize_permissions() missing 1 required positional argument: 'app' [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:20:15,447 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:20:15,464 ERROR: Error inicializando permisos: initialize_permissions() missing 1 required positional argument: 'app' [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:35:06,279 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:35:06,322 ERROR: Error inicializando permisos: When initializing mapper Mapper[Inventory(inventory)], expression 'Document' failed to locate a name ('Document'). If this is a class name, consider adding this relationship() to the <class 'models.inventory.Inventory'> class after both dependent classes have been defined. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:35:32,068 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:35:32,099 ERROR: Error inicializando permisos: When initializing mapper Mapper[Inventory(inventory)], expression 'Document' failed to locate a name ('Document'). If this is a class name, consider adding this relationship() to the <class 'models.inventory.Inventory'> class after both dependent classes have been defined. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 20:56:14,040 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 20:56:14,078 ERROR: Error inicializando permisos: Could not determine join condition between parent/child tables on relationship Product.inventory_movements - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:01:19,415 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:01:19,447 ERROR: Error inicializando permisos: When initializing mapper Mapper[Inventory(inventory)], expression 'Document' failed to locate a name ('Document'). If this is a class name, consider adding this relationship() to the <class 'models.inventory.Inventory'> class after both dependent classes have been defined. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:01:56,200 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:01:56,232 ERROR: Error inicializando permisos: When initializing mapper Mapper[Inventory(inventory)], expression 'Document' failed to locate a name ('Document'). If this is a class name, consider adding this relationship() to the <class 'models.inventory.Inventory'> class after both dependent classes have been defined. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:20:09,584 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:20:09,630 ERROR: Error inicializando permisos: When initializing mapper Mapper[Inventory(inventory)], expression 'Document' failed to locate a name ('Document'). If this is a class name, consider adding this relationship() to the <class 'models.inventory.Inventory'> class after both dependent classes have been defined. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:38:20,638 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:38:20,678 ERROR: Error inicializando permisos: Could not determine join condition between parent/child tables on relationship Product.inventory_movements - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:38:47,628 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:38:47,655 ERROR: Error inicializando permisos: Could not determine join condition between parent/child tables on relationship Product.inventory_movements - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:50:38,187 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:50:38,343 ERROR: Error inicializando permisos: (psycopg2.errors.UndefinedColumn) column permission.description does not exist
-LINE 1: ...ermission_id, permission.name AS permission_name, permission...
-                                                             ^
-
-[SQL: SELECT permission.id AS permission_id, permission.name AS permission_name, permission.description AS permission_description 
-FROM permission 
-WHERE permission.name = %(name_1)s 
- LIMIT %(param_1)s]
-[parameters: {'name_1': 'admin_access', 'param_1': 1}]
-(Background on this error at: https://sqlalche.me/e/20/f405) [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:51:08,439 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:51:08,554 ERROR: Error inicializando permisos: (psycopg2.errors.UndefinedColumn) column permission.description does not exist
-LINE 1: ...ermission_id, permission.name AS permission_name, permission...
-                                                             ^
-
-[SQL: SELECT permission.id AS permission_id, permission.name AS permission_name, permission.description AS permission_description 
-FROM permission 
-WHERE permission.name = %(name_1)s 
- LIMIT %(param_1)s]
-[parameters: {'name_1': 'admin_access', 'param_1': 1}]
-(Background on this error at: https://sqlalche.me/e/20/f405) [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 21:59:35,342 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 21:59:35,461 ERROR: Error inicializando permisos: (psycopg2.errors.UndefinedColumn) column permission.description does not exist
-LINE 1: ...ermission_id, permission.name AS permission_name, permission...
-                                                             ^
-
-[SQL: SELECT permission.id AS permission_id, permission.name AS permission_name, permission.description AS permission_description 
-FROM permission 
-WHERE permission.name = %(name_1)s 
- LIMIT %(param_1)s]
-[parameters: {'name_1': 'admin_access', 'param_1': 1}]
-(Background on this error at: https://sqlalche.me/e/20/f405) [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 22:07:13,917 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 22:07:14,066 ERROR: Error inicializando permisos: (psycopg2.errors.UndefinedTable) relation "permission" does not exist
-LINE 2: FROM permission 
-             ^
-
-[SQL: SELECT permission.id AS permission_id, permission.name AS permission_name, permission.description AS permission_description 
-FROM permission 
-WHERE permission.name = %(name_1)s 
- LIMIT %(param_1)s]
-[parameters: {'name_1': 'admin_access', 'param_1': 1}]
-(Background on this error at: https://sqlalche.me/e/20/f405) [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 22:19:56,138 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 22:19:56,161 ERROR: Error inicializando permisos: 'Engine' object has no attribute 'has_table' [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:60]
-2025-03-15 22:27:04,323 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 22:27:04,426 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
-2025-03-15 22:27:04,426 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
-2025-03-15 22:27:43,722 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 22:27:43,810 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
-2025-03-15 22:27:43,810 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
-2025-03-15 22:30:06,278 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
-2025-03-15 22:30:06,366 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
-2025-03-15 22:30:06,367 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
-2025-03-15 22:30:59,905 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:31:00,028 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
+2025-03-15 22:31:00,029 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-15 22:35:01,740 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:35:01,874 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
+2025-03-15 22:35:01,874 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-15 22:35:11,171 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:35:11,222 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
+2025-03-15 22:35:11,222 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-15 22:35:19,490 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:35:19,553 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
+2025-03-15 22:35:19,553 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-15 22:37:50,074 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:37:50,190 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:127]
+2025-03-15 22:37:50,191 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-15 22:38:06,056 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-15 22:38:06,216 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-15 22:38:06,217 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-16 00:19:19,247 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-16 00:19:19,399 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-16 00:19:19,399 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-16 00:19:44,945 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-16 00:19:45,074 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-16 00:19:45,074 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-16 00:20:12,441 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-16 00:20:12,573 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-16 00:20:12,574 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-16 20:34:03,956 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:32]
+2025-03-16 20:34:04,114 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
+2025-03-16 20:34:04,115 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:58]
+2025-03-16 20:34:11,879 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 87, in security_middleware
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    ^^^^^^^^
+NameError: name 'response' is not defined
+2025-03-16 20:34:33,656 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 87, in security_middleware
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    ^^^^^^^^
+NameError: name 'response' is not defined
+2025-03-16 21:38:57,433 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 87, in security_middleware
+NameError: name 'response' is not defined
+2025-03-16 21:39:00,798 ERROR: Exception on /auth/login [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
+    rv = self.preprocess_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
+    rv = self.ensure_sync(before_func)()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 87, in security_middleware
+NameError: name 'response' is not defined
