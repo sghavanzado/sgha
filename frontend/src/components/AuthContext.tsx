@@ -1,0 +1,80 @@
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../api/axiosInstance'; // Usar la instancia configurada
+
+interface AuthContextType {
+    user: any;
+    token: string | null;
+    loading: boolean;
+    login: (email: string, password: string) => Promise<void>;
+    logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType>({
+    user: null,
+    token: null,
+    loading: true,
+    login: async () => {},
+    logout: () => {}
+});
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+    const [user, setUser] = useState<any>(null);
+    const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            if (token) {
+                try {
+                    // Usar la instancia de axios configurada
+                    const response = await axiosInstance.get('/users/profile');
+                    setUser(response.data);
+                } catch (error) {
+                    logout();
+                } finally {
+                    setLoading(false);
+                }
+            } else {
+                setLoading(false);
+            }
+        };
+        verifyToken();
+    }, [token]);
+
+    const login = async (email: string, password: string) => {
+        try {
+          setLoading(true);
+          const response = await axiosInstance.post('/auth/login', {
+            email,
+            password
+          });
+          
+          localStorage.setItem('token', response.data.access_token);
+          setToken(response.data.access_token);
+          setUser(response.data.user);
+        } catch (error) {
+          console.error('Login error:', error);
+          throw error;
+        } finally {
+          setLoading(false);
+        }
+      };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setToken(null);
+        delete axiosInstance.defaults.headers.common['Authorization'];
+        setUser(null);
+        navigate('/');
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, token, loading, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export const useAuth = () => useContext(AuthContext);
