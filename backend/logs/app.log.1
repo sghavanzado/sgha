@@ -1,4 +1,15 @@
-2025-03-17 15:17:48,345 ERROR: Exception on /users/2 [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-18 11:48:37,905 ERROR: Exception on /auth/register [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.NotNullViolation: null value in column "username" of relation "user" violates not-null constraint
+DETAIL:  Failing row contains (7, null, testuser@example.com, scrypt:32768:8:1$qUqek8yOg8pJ5Rey$f49c522440e6b7fe5c53952e4c7df1..., 2, t, null, null, null, null, null, null, 2025-03-18 10:48:37.904093, 2025-03-18 10:48:37.904099, null, 0, null, null, null).
+
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -9,121 +20,82 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
     return cors_after_request(app.make_response(f(*args, **kwargs)))
                                                 ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
-    rv = self.preprocess_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
-    rv = self.ensure_sync(before_func)()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
-    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
-                                                               ^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: request_id
-2025-03-17 15:18:01,873 ERROR: Exception on /users/1 [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
-    rv = self.preprocess_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
-    rv = self.ensure_sync(before_func)()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
-    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
-                                                               ^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: request_id
-2025-03-17 15:26:32,710 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
-2025-03-17 15:40:18,876 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:120]
-2025-03-17 15:56:44,850 ERROR: Exception on /use/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
-    rv = self.preprocess_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
-    rv = self.ensure_sync(before_func)()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
-    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
-                                                               ^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: request_id
-2025-03-17 15:56:57,302 ERROR: Exception on /users/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
-    rv = self.preprocess_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
-    rv = self.ensure_sync(before_func)()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
-    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
-                                                               ^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: request_id
-2025-03-17 15:57:15,532 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:35]
-2025-03-17 15:57:15,671 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 15:57:15,672 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 15:57:29,982 ERROR: Exception on /users/profile [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 915, in full_dispatch_request
-    rv = self.preprocess_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1291, in preprocess_request
-    rv = self.ensure_sync(before_func)()
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 135, in check_authentication
-    app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.request_id}')
-                                                               ^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: request_id
-2025-03-17 15:59:57,460 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
-2025-03-17 15:59:57,605 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 15:59:57,605 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:00:03,614 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode' | ID: c80e8989-84ed-46c8-a2d4-783aa26ccc44 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:03:50,571 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
-2025-03-17 16:03:50,716 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 16:03:50,717 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:03:54,459 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: b093cbec-20d1-4d72-874f-7041b02d200f [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:05:55,066 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/auth.py", line 61, in register
+    db.session.commit()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 599, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "username" of relation "user" violates not-null constraint
+DETAIL:  Failing row contains (7, null, testuser@example.com, scrypt:32768:8:1$qUqek8yOg8pJ5Rey$f49c522440e6b7fe5c53952e4c7df1..., 2, t, null, null, null, null, null, null, 2025-03-18 10:48:37.904093, 2025-03-18 10:48:37.904099, null, 0, null, null, null).
+
+[SQL: INSERT INTO "user" (username, email, password_hash, role_id, is_active, name, second_name, last_name, phone_number, created_at, updated_at, last_login, login_attempts, locked_until) VALUES (%(username)s, %(email)s, %(password_hash)s, %(role_id)s, %(is_active)s, %(name)s, %(second_name)s, %(last_name)s, %(phone_number)s, %(created_at)s, %(updated_at)s, %(last_login)s, %(login_attempts)s, %(locked_until)s) RETURNING "user".id]
+[parameters: {'username': None, 'email': 'testuser@example.com', 'password_hash': 'scrypt:32768:8:1$qUqek8yOg8pJ5Rey$f49c522440e6b7fe5c53952e4c7df16afa0977429410ade910c03bd12f408f3fd49e59d59f444b3e2dee72603742951ebaa86ff04a5b82f3afc7173f3225b415', 'role_id': 2, 'is_active': True, 'name': None, 'second_name': None, 'last_name': None, 'phone_number': None, 'created_at': datetime.datetime(2025, 3, 18, 10, 48, 37, 904093), 'updated_at': datetime.datetime(2025, 3, 18, 10, 48, 37, 904099), 'last_login': None, 'login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-18 11:50:42,624 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 11:51:37,477 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 11:51:39,914 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 11:51:41,049 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 11:52:50,040 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 12:04:47,103 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 12:05:16,419 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 12:06:26,505 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 12:17:35,159 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
+2025-03-18 12:17:35,411 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-18 12:17:35,411 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]

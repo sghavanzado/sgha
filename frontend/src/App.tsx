@@ -1,3 +1,5 @@
+//App.tsx
+
 import { useEffect } from 'react';
 import React, { useState } from 'react';
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';

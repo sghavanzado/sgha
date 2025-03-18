@@ -1,3 +1,5 @@
+# config.py
+
 import os
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -7,7 +9,6 @@ load_dotenv()  # Cargar variables de entorno desde .env
 class Config:
     # Configuración Base
     SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(32)
-    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or os.urandom(32)
     FLASK_ENV = os.environ.get('FLASK_ENV', 'production')
     
     # Configuración de Base de Datos
@@ -20,19 +21,6 @@ class Config:
         'pool_pre_ping': True,
         'max_overflow': 20
     }
-    
-    # Configuración JWT
-    JWT_TOKEN_LOCATION = ['headers', 'cookies']  # Aceptar tokens en headers y cookies
-    JWT_HEADER_NAME = 'Authorization'
-    JWT_HEADER_TYPE = 'Bearer'
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=45)
-    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)
-    JWT_BLACKLIST_ENABLED = True
-    JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
-    JWT_COOKIE_SECURE = False  # True en producción
-    JWT_COOKIE_CSRF_PROTECT = True
-    JWT_COOKIE_SAMESITE = 'Lax'  # Prevenir CSRF
-    
     
     # Configuración CORS
     CORS_ORIGINS = os.environ.get('CORS_ORIGINS', 'http://localhost:5173').split(',')
@@ -66,11 +54,23 @@ class Config:
     # Configuración de Auditoría
     AUDIT_LOG_ENABLED = True
     AUDIT_LOG_FILE = 'logs/audit.log'
+    
+    # Configuración JWT
+    JWT_SECRET_KEY = os.urandom(32).hex()  # Generate a new random JWT_SECRET_KEY
+    JWT_TOKEN_LOCATION = ['headers', 'cookies']
+    JWT_HEADER_NAME = 'Authorization'
+    JWT_HEADER_TYPE = 'Bearer'
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=45)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)
+    JWT_BLACKLIST_ENABLED = True
+    JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
+    JWT_COOKIE_SECURE = False  # True en producción
+    JWT_COOKIE_CSRF_PROTECT = True
+    JWT_COOKIE_SAMESITE = 'Lax'  # Prevenir CSRF
 
 class ProductionConfig(Config):
     FLASK_ENV = 'production'
     DEBUG = False
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_size': 20,
         'pool_recycle': 3600,
@@ -83,9 +83,6 @@ class DevelopmentConfig(Config):
     FLASK_ENV = 'development'
     DEBUG = True
     SESSION_COOKIE_SECURE = False
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
-    JWT_COOKIE_SECURE = False
-    JWT_COOKIE_CSRF_PROTECT = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_size': 5,
         'pool_recycle': 300,
@@ -97,4 +94,3 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     WTF_CSRF_ENABLED = False
-    JWT_BLACKLIST_ENABLED = False

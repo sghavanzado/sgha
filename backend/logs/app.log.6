@@ -1,133 +1,94 @@
-2025-03-17 00:07:51,871 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
+2025-03-18 11:35:47,936 ERROR: Exception on /auth/register [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.NotNullViolation: null value in column "username" of relation "user" violates not-null constraint
+DETAIL:  Failing row contains (2, null, testuser@example.com, scrypt:32768:8:1$qEVc0H25nbQIlmHI$517cf86d492905021babfb31b25016..., 2, t, null, null, null, null, null, null, 2025-03-18 10:35:47.923372, 2025-03-18 10:35:47.923379, null, 0, null, null, null).
+
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/auth.py", line 56, in register
+    return jsonify({'message': 'Rol "user" no encontrado'}), 500
+    ^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 599, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "username" of relation "user" violates not-null constraint
+DETAIL:  Failing row contains (2, null, testuser@example.com, scrypt:32768:8:1$qEVc0H25nbQIlmHI$517cf86d492905021babfb31b25016..., 2, t, null, null, null, null, null, null, 2025-03-18 10:35:47.923372, 2025-03-18 10:35:47.923379, null, 0, null, null, null).
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,258 ERROR: Exception on /auth/login [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,263 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,435 ERROR: Intento de acceso sin token [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:113]
-2025-03-17 00:07:57,435 ERROR: Exception on /favicon.ico [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-2025-03-17 00:07:57,436 ERROR: Request finalizing failed with an error while handling an error [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:948]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 941, in finalize_request
-    response = self.process_response(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1319, in process_response
-    response = self.ensure_sync(func)(response)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/app.py", line 78, in security_middleware
-    response.headers['Access-Control-Allow-Origin'] = ', '.join(app.config['CORS_ORIGINS'])
-                                                                ~~~~~~~~~~^^^^^^^^^^^^^^^^
-KeyError: 'CORS_ORIGINS'
+[SQL: INSERT INTO "user" (username, email, password_hash, role_id, is_active, name, second_name, last_name, phone_number, created_at, updated_at, last_login, login_attempts, locked_until) VALUES (%(username)s, %(email)s, %(password_hash)s, %(role_id)s, %(is_active)s, %(name)s, %(second_name)s, %(last_name)s, %(phone_number)s, %(created_at)s, %(updated_at)s, %(last_login)s, %(login_attempts)s, %(locked_until)s) RETURNING "user".id]
+[parameters: {'username': None, 'email': 'testuser@example.com', 'password_hash': 'scrypt:32768:8:1$qEVc0H25nbQIlmHI$517cf86d492905021babfb31b25016f993783162fe9cc952efe256326ac1f1f9b5fa9b74a8a2d1693d0c6ab61c0485075851cf45a205948dd4d8f2e2eee2677c', 'role_id': 2, 'is_active': True, 'name': None, 'second_name': None, 'last_name': None, 'phone_number': None, 'created_at': datetime.datetime(2025, 3, 18, 10, 35, 47, 923372), 'updated_at': datetime.datetime(2025, 3, 18, 10, 35, 47, 923379), 'last_login': None, 'login_attempts': 0, 'locked_until': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-18 11:36:10,500 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
+2025-03-18 11:36:10,654 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-18 11:36:10,654 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]

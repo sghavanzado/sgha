@@ -1,3 +1,5 @@
+// apiService.ts
+
 import axiosInstance from './axiosInstance';
 
 // Interfaces TypeScript
@@ -79,25 +81,6 @@ export interface Invoice {
     unit_price: number;
   }>;
 }
-
-
-// -------------------------Servicio de Autenticación------------------------------
-export const authService = {
-  login: async (email: string, password: string) => {
-    try {
-      const response = await axiosInstance.post('/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
-      return response.data;
-    } catch (error) {
-      throw new Error('Error de autenticación');
-    }
-  },
-
-  logout: () => {
-    localStorage.removeItem('token');
-  }
-};
-
 
 // ---------------------Servicio de Productos (Completo)--------------------------
 export const productService = {

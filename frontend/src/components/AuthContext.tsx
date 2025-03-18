@@ -29,8 +29,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (token) {
                 try {
                     // Usar la instancia de axios configurada
-                    const response = await axiosInstance.get('/user/profile');
-                    setUser(response.data);
+                    const response = await fetch('/users/profile', {
+                        headers: {
+                          'Authorization': `Bearer ${token}`
+                        }
+                      })
+                      if (!response.ok) throw new Error('Token inválido')
+
+                      const userData = await response.json()
+                      setUser(userData)
                 } catch (error) {
                     logout();
                 } finally {
@@ -46,14 +53,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const login = async (email: string, password: string) => {
         try {
           setLoading(true);
-          const response = await axiosInstance.post('/auth/login', {
-            email,
-            password
-          });
-          
-          localStorage.setItem('token', response.data.access_token);
-          setToken(response.data.access_token);
-          setUser(response.data.user);
+          const response = await fetch('/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+          })
+
+          const data = await response.json()
+
+          localStorage.setItem('jwt', data.access_token)
+          setToken(data.access_token)
+          setUser(data.user)
           navigate('/dashboard');
         } catch (error) {
           console.error('Login error:', error);
@@ -64,9 +76,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
 
     const logout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt')
         setToken(null);
-        delete axiosInstance.defaults.headers.common['Authorization'];
         setUser(null);
         navigate('/');
     };

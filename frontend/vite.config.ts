@@ -1,7 +1,13 @@
-// vite.config.js (configuración limpia)
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react()]
-});
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/auth': 'http://localhost:5000',
+      '/users': 'http://localhost:5000'
+    }
+  }
+})

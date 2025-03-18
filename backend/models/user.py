@@ -1,31 +1,26 @@
 from extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime, timedelta
-from sqlalchemy import event, DDL
+from datetime import datetime
 from sqlalchemy import inspect
 
 # Modelo de Usuario
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, nullable=False, index=True)
+    username = db.Column(db.String(64), unique=True, nullable=True, index=True)  # Make username nullable
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)
-    password_hash = db.Column(db.String(512), nullable=False)  # Aumentado para algoritmos modernos
+    password_hash = db.Column(db.String(512), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
-    two_factor_enabled = db.Column(db.Boolean, default=False)
     name = db.Column(db.String(64), nullable=False)
     second_name = db.Column(db.String(64), nullable=True)
     last_name = db.Column(db.String(64), nullable=False)
     phone_number = db.Column(db.String(20), nullable=True)
-    refresh_token = db.Column(db.String(512), nullable=True, index=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     last_login = db.Column(db.DateTime)
     login_attempts = db.Column(db.Integer, default=0)
     locked_until = db.Column(db.DateTime, nullable=True)
-    secret_2fa = db.Column(db.String(128), nullable=True)
-    backup_codes = db.Column(db.JSON, nullable=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password, method='scrypt')
@@ -39,16 +34,6 @@ class User(UserMixin, db.Model):
     def is_admin(self):
         return self.has_permission('admin_access')
 
-    def generate_refresh_token(self):
-        from flask_jwt_extended import create_refresh_token
-        self.refresh_token = create_refresh_token(identity=self.id)
-        db.session.commit()
-        return self.refresh_token
-
-    def revoke_refresh_token(self):
-        self.refresh_token = None
-        db.session.commit()
-
     def get_permissions(self):
         return [permission.name for permission in self.role.permissions]
 
@@ -59,7 +44,6 @@ class User(UserMixin, db.Model):
             'email': self.email,
             'role_id': self.role_id,
             'is_active': self.is_active,
-            'two_factor_enabled': self.two_factor_enabled,
             'name': self.name,
             'last_name': self.last_name,
             'created_at': self.created_at.isoformat(),
@@ -145,6 +129,10 @@ def initialize_permissions(app):
             admin_perms = Permission.query.all()
             admin_role.permissions.extend(admin_perms)
             db.session.add(admin_role)
+        
+        if not Role.query.filter_by(name='user').first():
+            user_role = Role(name='user', description='Usuario estándar')
+            db.session.add(user_role)
         
         try:
             db.session.commit()

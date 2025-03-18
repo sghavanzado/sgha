@@ -29,10 +29,16 @@ def initialize_roles_and_permissions():
             admin_role.permissions = permissions
             
             db.session.add(admin_role)
+
+            # Crear rol de usuario estándar sin permisos adicionales
+            user_role = Role(name='user', description='Usuario estándar')
+            db.session.add(user_role)
+            
             db.session.commit()
             
             print("✅  Roles y permisos inicializados exitosamente")
             print(f"🔑 Rol admin creado con {len(permissions)} permisos")
+            print("🔑 Rol user creado sin permisos adicionales")
 
         except Exception as e:
             db.session.rollback()
@@ -41,4 +47,3 @@ def initialize_roles_and_permissions():
 
 if __name__ == '__main__':
     initialize_roles_and_permissions()
-        

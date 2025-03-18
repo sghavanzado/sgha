@@ -1,3 +1,5 @@
+//authService.ts
+
 import axiosInstance from './axiosInstance';
 
 interface LoginResponse {
@@ -27,7 +29,7 @@ export const authService = {
   },
 
   getProfile: async (): Promise<LoginResponse['user']> => {
-    const response = await axiosInstance.get('/auth/profile');
+    const response = await axiosInstance.get('/users/profile');
     return response.data;
   },
 

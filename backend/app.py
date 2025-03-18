@@ -1,13 +1,15 @@
+# app.py 
 from flask import Flask, jsonify, request, g, make_response
 from flask_cors import CORS
-from extensions import db, jwt, migrate
+from extensions import db, migrate, login_manager
+from flask_jwt_extended import JWTManager  # Import JWTManager
 from config import Config
 from models.user import User, Role, initialize_permissions
 from cli import register_commands
 import logging
 from logging.handlers import RotatingFileHandler
 import os
-import uuid  # Importar uuid
+import uuid
 from routes import (
     auth, user_routes, product_routes, inventory_routes,
     inventory_reports_routes, order_routes, provider_routes,
@@ -37,8 +39,9 @@ def create_app():
 
     # Inicializar extensiones
     db.init_app(app)
-    jwt.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
+    jwt = JWTManager(app)  # Initialize JWTManager
 
     # Registrar comandos CLI
     register_commands(app)
@@ -98,49 +101,6 @@ def create_app():
     @app.before_request
     def initialize_request_id():
         g.request_id = str(uuid.uuid4())
-
-    # Middleware de autenticación global
-    @app.before_request
-    def check_authentication():
-        # Permitir solicitudes OPTIONS sin autenticación
-        if request.method == 'OPTIONS':
-            return
-        # Rutas excluidas de autenticación
-        excluded_paths = [
-            '/auth/login',
-            '/auth/refresh',
-            '/auth/register',
-            '/docs',
-            '/spec'
-        ]
-
-        if request.path in excluded_paths:
-            return
-
-        # Verificar token JWT
-        auth_header = request.headers.get('Authorization')
-        if not auth_header or not auth_header.startswith('Bearer '):
-            app.logger.error('Intento de acceso sin token')
-            return jsonify({'error': 'Acceso no autorizado'}), 401
-
-        try:
-            token = auth_header.split(" ")[1]
-            jwt_data = jwt.get_jwt()  # Usar get_jwt()
-            user = User.query.get(jwt_data['sub'])
-
-            if not user or not user.is_active:
-                raise Exception('Usuario no existe o está inactivo')
-
-            g.current_user = user
-            app.logger.info(f'Acceso autorizado para: {user.email} | ID: {g.get('request_id', 'N/A')}')
-
-        except Exception as e:
-            app.logger.error(f'Error de autenticación: {str(e)} | ID: {g.get('request_id', 'N/A')}')
-            return jsonify({
-                'error': 'Error de autenticación',
-                'message': str(e),
-                'request_id': g.get('request_id', 'N/A')
-            }), 401
 
     # Registrar blueprints
     register_blueprints(app)

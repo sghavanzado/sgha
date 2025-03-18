@@ -1,20 +1,83 @@
-2025-03-17 16:05:55,214 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 16:05:55,215 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:07:12,293 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: 56eeb665-e067-4877-8403-a4d11eea1507 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:07:16,916 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'decode_token' | ID: 27b4dfee-81a0-4f15-b40c-c308265d1650 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:08:36,504 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
-2025-03-17 16:08:36,652 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 16:08:36,652 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:08:41,796 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 917c99b0-8c05-434a-9239-b3aebb6d6063 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:15:58,995 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: d817725e-21fc-43cd-af0c-08ed7e665c65 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:17:15,750 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: e7b61c79-c4e6-4562-8dd2-607c0610ee65 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:21:58,659 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
-2025-03-17 16:21:58,801 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 16:21:58,801 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:22:01,652 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: a44c5acf-bd0f-4e23-bd3c-4567a143c0ac [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:23:03,118 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: f4f8d28d-86d4-4cf5-8fe8-ce1177454970 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:24:59,723 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:36]
-2025-03-17 16:24:59,879 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:151]
-2025-03-17 16:24:59,879 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:50]
-2025-03-17 16:45:37,107 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 26620961-9d85-427e-9223-dd528c3c2d1b [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
-2025-03-17 16:51:54,632 ERROR: Error de autenticación: 'JWTManager' object has no attribute 'get_jwt' | ID: 388770c0-a932-426d-b8d2-5f138a4513fc [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:138]
+2025-03-18 12:18:12,176 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
+    if not g.current_user:
+           ^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: current_user
+2025-03-18 12:18:29,370 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 12:19:01,475 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
+    if not g.current_user:
+           ^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: current_user
+2025-03-18 12:39:21,780 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
+    if not g.current_user or not g.current_user.has_permission(permission):
+           ^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: current_user
+2025-03-18 12:39:38,111 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
+2025-03-18 12:39:38,287 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-18 12:39:38,287 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]
+2025-03-18 12:41:41,460 WARNING: Intento de acceso con token inválido: Not enough segments [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
