@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Container, Typography, Grid } from '@mui/material';
-import { getUsers, createUser, updateUser, deleteUser } from '../api/apiService.ts ';
+import { getUsers, createUser, updateUser, deleteUser } from '../api/apiService';
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);

@@ -10,4 +10,4 @@ const Unauthorized = () => {
   );
 };
 
-export default Unauthorized;  // Asegúrate de exportar
+export default Unauthorized;

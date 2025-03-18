@@ -236,15 +236,13 @@ export default function SignInCard() {
       <Divider sx={{ my: 3 }}>o</Divider>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          
-      // En los métodos de autenticación social
         <Button
-         fullWidth
-         variant="outlined"
-         onClick={() => window.location.href = '/api/auth/google'} // Usar ruta proxy
-         startIcon={<GoogleIcon />}
-         >
-         Continuar con Google
+          fullWidth
+          variant="outlined"
+          onClick={() => window.location.href = '/api/auth/google'} // Usar ruta proxy
+          startIcon={<GoogleIcon />}
+        >
+          Continuar con Google
         </Button>
 
         <Button

@@ -66,22 +66,6 @@ export interface Product {
   location?: string;
 }
 
-
-export interface Invoice {
-  id?: number;
-  invoice_number: string;
-  issue_date: string;
-  due_date: string;
-  total_amount: number;
-  status: 'draft' | 'sent' | 'paid' | 'cancelled';
-  client_id: number;
-  items: Array<{
-    description: string;
-    quantity: number;
-    unit_price: number;
-  }>;
-}
-
 // ---------------------Servicio de Productos (Completo)--------------------------
 export const productService = {
   createProduct: async (productData: Omit<Product, 'id'>): Promise<Product> => {
@@ -124,7 +108,6 @@ export const productService = {
       throw new Error('Error al actualizar producto');
     }
   },
-
 
   deleteProduct: async (id: number): Promise<void> => {
     try {

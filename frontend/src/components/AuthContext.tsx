@@ -29,15 +29,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (token) {
                 try {
                     // Usar la instancia de axios configurada
-                    const response = await fetch('/users/profile', {
-                        headers: {
-                          'Authorization': `Bearer ${token}`
-                        }
-                      })
-                      if (!response.ok) throw new Error('Token inválido')
-
-                      const userData = await response.json()
-                      setUser(userData)
+                    const response = await axiosInstance.get('/users/profile');
+                    setUser(response.data);
                 } catch (error) {
                     logout();
                 } finally {
@@ -52,31 +45,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const login = async (email: string, password: string) => {
         try {
-          setLoading(true);
-          const response = await fetch('/auth/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-          })
-
-          const data = await response.json()
-
-          localStorage.setItem('jwt', data.access_token)
-          setToken(data.access_token)
-          setUser(data.user)
-          navigate('/dashboard');
+            setLoading(true);
+            const response = await axiosInstance.post('/auth/login', { email, password });
+            localStorage.setItem('access_token', response.data.access_token);
+            setToken(response.data.access_token);
+            setUser(response.data.user);
+            navigate('/dashboard');
         } catch (error) {
-          console.error('Login error:', error);
-          throw error;
+            console.error('Login error:', error);
+            throw error;
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-      };
+    };
 
     const logout = () => {
-        localStorage.removeItem('jwt')
+        localStorage.removeItem('access_token');
         setToken(null);
         setUser(null);
         navigate('/');
