@@ -6,10 +6,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import SelectContent from './SelectContent';
 import MenuContent from './MenuContent';
-import CardAlert from './CardAlert';
 import OptionsMenu from './OptionsMenu';
+import { useAuth } from './AuthContext'; // Import the AuthContext to access user data
 
 const drawerWidth = 340;
 
@@ -25,6 +24,13 @@ const Drawer = styled(MuiDrawer)({
 });
 
 export default function SideMenu() {
+  const { user } = useAuth(); // Access the logged-in user's data from AuthContext
+
+  // If the user is not logged in, do not render the side menu
+  if (!user) {
+    return null;
+  }
+
   return (
     <Drawer
       variant="permanent"
@@ -44,6 +50,7 @@ export default function SideMenu() {
           flexDirection: 'column',
         }}
       >
+        {/* Render the menu content */}
         <MenuContent />
       </Box>
       <Stack
@@ -56,20 +63,24 @@ export default function SideMenu() {
           borderColor: 'divider',
         }}
       >
+        {/* Display the user's avatar */}
         <Avatar
           sizes="small"
-          alt="Riley Carter"
-          src="/static/images/avatar/7.jpg"
+          alt={user.name}
+          src={user.avatar || ''} // Use the user's avatar if available
           sx={{ width: 36, height: 36 }}
         />
         <Box sx={{ mr: 'auto' }}>
+          {/* Display the user's name */}
           <Typography variant="body2" sx={{ fontWeight: 500, lineHeight: '16px' }}>
-            Riley Carter
+            {user.name}
           </Typography>
+          {/* Display the user's email */}
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            riley@email.com
+            {user.email}
           </Typography>
         </Box>
+        {/* Render the options menu */}
         <OptionsMenu />
       </Stack>
     </Drawer>

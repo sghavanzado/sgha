@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../api/axiosInstance'; // Usar la instancia configurada
+import axiosInstance from '../api/axiosInstance';
 
 interface AuthContextType {
     user: any;
@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<any>(null);
-    const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+    const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'));
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -28,9 +28,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const verifyToken = async () => {
             if (token) {
                 try {
-                    // Usar la instancia de axios configurada
                     const response = await axiosInstance.get('/users/profile');
-                    setUser(response.data);
+                    setUser(response.data); // Ensure user data is available for SideMenu
                 } catch (error) {
                     logout();
                 } finally {
@@ -48,9 +47,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setLoading(true);
             const response = await axiosInstance.post('/auth/login', { email, password });
             localStorage.setItem('access_token', response.data.access_token);
+            localStorage.setItem('refresh_token', response.data.refresh_token);
             setToken(response.data.access_token);
             setUser(response.data.user);
-            navigate('/dashboard');
         } catch (error) {
             console.error('Login error:', error);
             throw error;
@@ -61,6 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const logout = () => {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
         setToken(null);
         setUser(null);
         navigate('/');

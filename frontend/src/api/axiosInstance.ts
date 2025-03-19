@@ -2,7 +2,7 @@
 
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig, AxiosRequestConfig } from 'axios';
 
-// Interfaces para tipos de tokens
+// Interfaces for token types
 interface TokenResponse {
   access_token: string;
   refresh_token?: string;
@@ -14,7 +14,7 @@ interface ApiError {
   statusCode: number;
 }
 
-// Configuración de estado global para manejo de tokens
+// Global state for token handling
 let isRefreshing = false;
 type QueueItem = { resolve: (token: string) => void; reject: (error: unknown) => void };
 let failedQueue: QueueItem[] = [];
@@ -26,18 +26,17 @@ const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue = [];
 };
 
-// URL completa del backend
+// Backend base URL
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', 
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
   },
-  timeout: 10000
+  timeout: 10000,
 });
 
-
-// Interceptor de solicitud
+// Request interceptor
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('access_token');
@@ -53,12 +52,12 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Interceptor de respuesta
+// Response interceptor
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError<ApiError>) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
-    
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise<string>((resolve, reject) => {
@@ -77,14 +76,14 @@ axiosInstance.interceptors.response.use(
         if (!refreshToken) throw new Error('No refresh token available');
 
         const { data } = await axios.post<TokenResponse>(
-          '/api/auth/refresh', // Asegurar ruta correcta
+          '/auth/refresh',
           { refresh_token: refreshToken },
           { baseURL: import.meta.env.VITE_API_URL }
         );
 
         localStorage.setItem('access_token', data.access_token);
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
-        
+
         processQueue(null, data.access_token);
         return axiosInstance(originalRequest);
       } catch (refreshError) {
@@ -98,22 +97,21 @@ axiosInstance.interceptors.response.use(
       }
     }
 
-    // Manejo de errores tipado
     const errorData: ApiError = {
       error: error.response?.data?.error || 'unknown_error',
       message: error.response?.data?.message || 'Unknown error',
-      statusCode: error.response?.status || 500
+      statusCode: error.response?.status || 500,
     };
 
     return Promise.reject({
       ...errorData,
       isApiError: true,
-      localizedMessage: getLocalizedErrorMessage(errorData.error)
+      localizedMessage: getLocalizedErrorMessage(errorData.error),
     });
   }
 );
 
-// Tipos para mensajes localizados
+// Localized error messages
 type LocalizedMessages = {
   [key: string]: {
     [lang: string]: string;
@@ -123,12 +121,12 @@ type LocalizedMessages = {
 const localizedMessages: LocalizedMessages = {
   invalid_token: {
     en: 'Session expired, please login again',
-    es: 'Sesión expirada, por favor inicie sesión nuevamente'
+    es: 'Sesión expirada, por favor inicie sesión nuevamente',
   },
   network_error: {
     en: 'Network error - please check your connection',
-    es: 'Error de red - verifique su conexión'
-  }
+    es: 'Error de red - verifique su conexión',
+  },
 };
 
 const getLocalizedErrorMessage = (messageKey: string): string => {

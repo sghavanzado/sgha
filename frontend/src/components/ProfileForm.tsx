@@ -1,70 +1,105 @@
-import React from 'react';
-import { TextField, Button, Typography, Stack, Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, Grid, CircularProgress } from '@mui/material';
+import { useAuth } from './AuthContext';
+import { authService } from '../api/authService';
 
-export const ProfileForm: React.FC = () => {
+interface ProfileFormProps {
+  onClose: () => void;
+}
+
+const ProfileForm = ({ onClose }: ProfileFormProps) => {
+  const { user, setUser } = useAuth();
+  const [formData, setFormData] = useState({
+    name: '',
+    last_name: '',
+    email: '',
+    username: '',
+  });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.name || '',
+        last_name: user.last_name || '',
+        email: user.email || '',
+        username: user.username || '',
+      });
+    }
+  }, [user]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const updatedUser = await authService.updateProfile(formData);
+      setUser(updatedUser);
+      onClose();
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Box 
-      component="form"
-      sx={{ 
-        maxWidth: 600,
-        padding: 3,
-        borderRadius: 2,
-        boxShadow: 1
-      }}
-    >
-      <Typography 
-        variant="h4" 
-        gutterBottom
-        component="h1"
-        sx={{ mb: 4 }}
-      >
-        Perfil de Usuario
-      </Typography>
-      
-      <Stack spacing={3}>
-        <TextField
-          label="Nombre completo"
-          variant="outlined"
-          fullWidth
-          required
-          inputProps={{ 'data-testid': 'fullname-input' }}
-        />
-        
-        <TextField
-          label="Correo electrónico"
-          type="email"
-          fullWidth
-          required
-          inputProps={{ 
-            pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$",
-            'data-testid': 'email-input'
-          }}
-        />
-        
-        <TextField
-          label="Teléfono"
-          type="tel"
-          fullWidth
-          inputProps={{ 
-            pattern: "[0-9]{9}",
-            'data-testid': 'phone-input'
-          }}
-        />
-        
-        <Button
-          type="submit"
-          variant="contained"
-          size="large"
-          sx={{ 
-            width: 200,
-            mt: 2,
-            alignSelf: 'flex-start'
-          }}
-          aria-label="Guardar cambios del perfil"
-        >
-          Guardar Cambios
-        </Button>
-      </Stack>
-    </Box>
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            name="name"
+            label="First Name"
+            fullWidth
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            name="last_name"
+            label="Last Name"
+            fullWidth
+            value={formData.last_name}
+            onChange={handleChange}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name="email"
+            label="Email"
+            fullWidth
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            name="username"
+            label="Username"
+            fullWidth
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading}>
+            {loading ? <CircularProgress size={24} /> : 'Save Changes'}
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };
+
+export default ProfileForm;

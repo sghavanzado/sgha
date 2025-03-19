@@ -10,6 +10,10 @@ import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
+import { Dialog, DialogTitle, DialogContent, IconButton } from '@mui/material';
+import ProfileForm from './ProfileForm';
+import UserManagement from '../pages/UserManagement';
+import { useAuth } from './AuthContext';
 
 const MenuItem = styled(MuiMenuItem)({
   margin: '2px 0',
@@ -17,6 +21,9 @@ const MenuItem = styled(MuiMenuItem)({
 
 export default function OptionsMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [openProfileDialog, setOpenProfileDialog] = React.useState(false);
+  const [openUserManagementDialog, setOpenUserManagementDialog] = React.useState(false);
+  const { logout } = useAuth();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,6 +31,21 @@ export default function OptionsMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleProfileOpen = () => {
+    setOpenProfileDialog(true);
+    handleClose();
+  };
+
+  const handleUserManagementOpen = () => {
+    setOpenUserManagementDialog(true);
+    handleClose();
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleClose();
+  };
+
   return (
     <React.Fragment>
       <MenuButton
@@ -53,14 +75,14 @@ export default function OptionsMenu() {
           },
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        
+        <MenuItem onClick={handleProfileOpen}>My account</MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>Add another account</MenuItem>
+        <MenuItem onClick={handleUserManagementOpen}>Add another account</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <Divider />
         <MenuItem
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{
             [`& .${listItemIconClasses.root}`]: {
               ml: 'auto',
@@ -74,6 +96,22 @@ export default function OptionsMenu() {
           </ListItemIcon>
         </MenuItem>
       </Menu>
+
+      {/* Dialog for Profile Form */}
+      <Dialog open={openProfileDialog} onClose={() => setOpenProfileDialog(false)} fullWidth maxWidth="sm">
+        <DialogTitle>My Account</DialogTitle>
+        <DialogContent>
+          <ProfileForm onClose={() => setOpenProfileDialog(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog for User Management */}
+      <Dialog open={openUserManagementDialog} onClose={() => setOpenUserManagementDialog(false)} fullWidth maxWidth="lg">
+        <DialogTitle>User Management</DialogTitle>
+        <DialogContent>
+          <UserManagement />
+        </DialogContent>
+      </Dialog>
     </React.Fragment>
   );
 }

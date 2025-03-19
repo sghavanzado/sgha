@@ -81,3 +81,8 @@ AttributeError: current_user
 2025-03-18 12:39:38,287 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
 2025-03-18 12:39:38,287 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]
 2025-03-18 12:41:41,460 WARNING: Intento de acceso con token inválido: Not enough segments [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
+2025-03-18 16:36:45,744 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
+2025-03-18 16:36:45,749 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
+2025-03-18 16:55:38,667 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
+2025-03-18 18:37:18,975 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
+2025-03-18 18:37:18,980 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]

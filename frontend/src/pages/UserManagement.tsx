@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Container, Typography, Grid } from '@mui/material';
-import { getUsers, createUser, updateUser, deleteUser } from '../api/apiService';
+import { userService } from '../api/apiService'; // Correctly import userService
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -17,7 +17,7 @@ const UserManagement = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const usersData = await getUsers();
+      const usersData = await userService.getUsers(); // Use userService to fetch users
       setUsers(usersData);
     };
     fetchUsers();
@@ -33,8 +33,8 @@ const UserManagement = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createUser(formData);
-      const usersData = await getUsers();
+      await userService.createUser(formData); // Use userService to create a user
+      const usersData = await userService.getUsers(); // Refresh the user list
       setUsers(usersData);
     } catch (error) {
       console.error('User creation failed', error);
@@ -128,7 +128,7 @@ const UserManagement = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary" fullWidth>
               Create User
             </Button>
           </Grid>
@@ -141,7 +141,7 @@ const UserManagement = () => {
         {users.map((user: any) => (
           <li key={user.id}>
             {user.username} - {user.email}
-            <Button onClick={() => deleteUser(user.id)}>Delete</Button>
+            <Button onClick={() => userService.deleteUser(user.id)}>Delete</Button>
           </li>
         ))}
       </ul>
