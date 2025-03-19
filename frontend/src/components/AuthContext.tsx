@@ -3,74 +3,72 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
 
 interface AuthContextType {
-    user: any;
-    token: string | null;
-    loading: boolean;
-    login: (email: string, password: string) => Promise<void>;
-    logout: () => void;
+  user: any;
+  token: string | null;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-    user: null,
-    token: null,
-    loading: true,
-    login: async () => {},
-    logout: () => {}
+  user: null,
+  token: null,
+  loading: true,
+  login: async () => {},
+  logout: () => {},
 });
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<any>(null);
-    const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'));
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<any>(null);
+  const [token, setToken] = useState<string | null>(localStorage.getItem('access_token'));
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const verifyToken = async () => {
-            if (token) {
-                try {
-                    const response = await axiosInstance.get('/users/profile');
-                    setUser(response.data); // Ensure user data is available for SideMenu
-                } catch (error) {
-                    logout();
-                } finally {
-                    setLoading(false);
-                }
-            } else {
-                setLoading(false);
-            }
-        };
-        verifyToken();
-    }, [token]);
-
-    const login = async (email: string, password: string) => {
+  useEffect(() => {
+    const verifyToken = async () => {
+      if (token) {
         try {
-            setLoading(true);
-            const response = await axiosInstance.post('/auth/login', { email, password });
-            localStorage.setItem('access_token', response.data.access_token);
-            localStorage.setItem('refresh_token', response.data.refresh_token);
-            setToken(response.data.access_token);
-            setUser(response.data.user);
+          const response = await axiosInstance.get('/users/profile');
+          setUser(response.data); // Set user data for authenticated users
         } catch (error) {
-            console.error('Login error:', error);
-            throw error;
+          logout(); // Logout if token verification fails
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
+      } else {
+        setLoading(false);
+      }
     };
+    verifyToken();
+  }, [token]);
 
-    const logout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        setToken(null);
-        setUser(null);
-        navigate('/');
-    };
+  const login = async (email: string, password: string) => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.post('/auth/login', { email, password });
+      localStorage.setItem('access_token', response.data.access_token);
+      setToken(response.data.access_token);
+      setUser(response.data.user);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-        <AuthContext.Provider value={{ user, token, loading, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    setToken(null);
+    setUser(null);
+    navigate('/');
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, token, loading, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export const useAuth = () => useContext(AuthContext);

@@ -3,31 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import LoadingBackdrop from './LoadingBackdrop';
 
-const ProtectedRoute = ({
-  children,
-  requiredPermission,
-}: {
-  children: JSX.Element;
-  requiredPermission?: string;
-}) => {
-  const { user, token, loading } = useAuth();
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const { token, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Redirect to login if the user is not authenticated
     if (!loading && !token) {
       navigate('/');
     }
-
-    if (token && requiredPermission && !user?.permissions?.includes(requiredPermission)) {
-      navigate('/nao-autorizado');
-    }
-  }, [token, loading, requiredPermission, user, navigate]);
+  }, [token, loading, navigate]);
 
   if (loading) {
-    return <LoadingBackdrop open={true} />; // Pass `open` explicitly
+    // Show a loading backdrop while authentication status is being verified
+    return <LoadingBackdrop open={true} />;
   }
 
-  if (token && (!requiredPermission || user?.permissions?.includes(requiredPermission))) {
+  if (token) {
+    // Render the children if the user is authenticated
     return children;
   }
 

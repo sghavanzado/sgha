@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import SideMenu from './components/SideMenu';
@@ -21,22 +21,23 @@ import AuditLog from './pages/AuditLog';
 import UserProfile from './pages/UserProfile';
 
 const AppWrapper = () => {
-  const [isLoading] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true); // Track initial load
   const { token, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && isInitialLoad) {
       if (token) {
-        navigate('/dashboard');
+        navigate('/dashboard'); // Redirect to dashboard only on initial load
       } else {
-        navigate('/');
+        navigate('/'); // Redirect to login if no token
       }
+      setIsInitialLoad(false); // Prevent further redirects
     }
-  }, [token, loading, navigate]);
+  }, [token, loading, isInitialLoad, navigate]);
 
   if (loading) {
-    return <LoadingBackdrop open={isLoading} />;
+    return <LoadingBackdrop open />;
   }
 
   return (
@@ -145,7 +146,7 @@ const AppWrapper = () => {
           path="*"
           element={
             <ProtectedRoute>
-              <Navigate to="/dashboard" />
+              <Dashboard />
             </ProtectedRoute>
           }
         />
