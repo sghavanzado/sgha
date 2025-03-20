@@ -14,6 +14,9 @@ import UpdateProduct from '../pages/UpdateProduct';
 import Unauthorized from '../pages/Unauthorized';
 import AuditLog from '../pages/AuditLog';
 import UserProfile from '../pages/UserProfile';
+import InvoiceManagement from '../pages/InvoiceManagement';
+import Settings from '../pages/Settings'; // Import the Settings page
+import DataImport from '../pages/DataImport'; // Import DataImport page
 
 const ContentArea = () => {
   return (
@@ -31,6 +34,14 @@ const ContentArea = () => {
         element={
           <ProtectedRoute>
             <NovaFatura />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/invoice-management"
+        element={
+          <ProtectedRoute>
+            <InvoiceManagement />
           </ProtectedRoute>
         }
       />
@@ -111,6 +122,22 @@ const ContentArea = () => {
         element={
           <ProtectedRoute>
             <AuditLog />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/import"
+        element={
+          <ProtectedRoute>
+            <DataImport />
           </ProtectedRoute>
         }
       />

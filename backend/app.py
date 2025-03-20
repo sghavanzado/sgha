@@ -14,8 +14,12 @@ from routes import (
     auth, user_routes, product_routes, inventory_routes,
     inventory_reports_routes, order_routes, provider_routes,
     price_routes, warehouse_routes, role_routes,
-    invoice_routes, accounting_routes
+    invoice_routes, accounting_routes, client_routes  # Import client routes
 )
+from routes.location_routes import location_bp  # Import location routes
+from routes.unit_routes import unit_bp  # Import unit routes
+from routes.tax_routes import tax_bp  # Import tax routes
+from routes.import_routes import import_bp  # Import import routes
 
 def create_app():
     # Crear instancia de Flask
@@ -136,6 +140,11 @@ def register_blueprints(app):
     app.register_blueprint(role_routes.role_bp, url_prefix='/roles')
     app.register_blueprint(invoice_routes.invoice_bp, url_prefix='/invoices')
     app.register_blueprint(accounting_routes.accounting_bp, url_prefix='/accounting')
+    app.register_blueprint(client_routes.client_bp, url_prefix='/clients')  # Register client routes
+    app.register_blueprint(location_bp, url_prefix='/locations')  # Register location routes
+    app.register_blueprint(unit_bp, url_prefix='/units')  # Register unit routes
+    app.register_blueprint(tax_bp, url_prefix='/taxes')  # Register tax routes
+    app.register_blueprint(import_bp, url_prefix='/api/import')  # Register import routes
 
 if __name__ == '__main__':
     app = create_app()

@@ -14,6 +14,7 @@ import { Dialog, DialogTitle, DialogContent, IconButton } from '@mui/material';
 import ProfileForm from './ProfileForm';
 import UserManagement from '../pages/UserManagement';
 import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const MenuItem = styled(MuiMenuItem)({
   margin: '2px 0',
@@ -24,6 +25,7 @@ export default function OptionsMenu() {
   const [openProfileDialog, setOpenProfileDialog] = React.useState(false);
   const [openUserManagementDialog, setOpenUserManagementDialog] = React.useState(false);
   const { logout } = useAuth();
+  const navigate = useNavigate(); // Hook for navigation
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,6 +40,11 @@ export default function OptionsMenu() {
 
   const handleUserManagementOpen = () => {
     setOpenUserManagementDialog(true);
+    handleClose();
+  };
+
+  const handleSettingsClick = () => {
+    navigate('/settings'); // Navigate to the Settings page
     handleClose();
   };
 
@@ -79,7 +86,7 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleProfileOpen}>My account</MenuItem>
         <Divider />
         <MenuItem onClick={handleUserManagementOpen}>Add another account</MenuItem>
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
+        <MenuItem onClick={handleSettingsClick}>Settings</MenuItem>
         <Divider />
         <MenuItem
           onClick={handleLogout}

@@ -24,23 +24,21 @@ class AccountPlan(db.Model):
 
 # Modelo de Lançamentos Contábeis
 class AccountingEntry(db.Model):
+    __tablename__ = 'accounting_entries'
+
     id = db.Column(db.Integer, primary_key=True)
-    entry_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     description = db.Column(db.String(255), nullable=False)
-    debit_account_id = db.Column(db.Integer, db.ForeignKey('account_plan.id'), nullable=False)
-    credit_account_id = db.Column(db.Integer, db.ForeignKey('account_plan.id'), nullable=False)
     amount = db.Column(db.Float, nullable=False)
-    document_id = db.Column(db.Integer, db.ForeignKey('supporting_document.id'), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    account_id = db.Column(db.Integer, nullable=False)
 
     def to_dict(self):
         return {
             'id': self.id,
-            'entry_date': self.entry_date.isoformat(),
             'description': self.description,
-            'debit_account_id': self.debit_account_id,
-            'credit_account_id': self.credit_account_id,
             'amount': self.amount,
-            'document_id': self.document_id,
+            'date': self.date.isoformat(),
+            'account_id': self.account_id,
         }
 
 # Modelo de Documentos Suporte

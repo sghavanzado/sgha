@@ -314,3 +314,70 @@ export const userService = {
     }
   }
 };
+
+// ------------------- Servicio de Ubicaciones ---------------------------
+export const locationService = {
+  getCountries: async () => {
+    try {
+      const response = await axiosInstance.get('/locations/countries');
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al obtener países');
+    }
+  },
+  getProvinces: async (countryId: number) => {
+    try {
+      const response = await axiosInstance.get(`/locations/provinces/${countryId}`);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al obtener provincias');
+    }
+  },
+};
+
+// ------------------- Servicio de Unidades de Medida ---------------------------
+export const unitService = {
+  getUnits: async () => {
+    try {
+      const response = await axiosInstance.get('/units');
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al obtener unidades de medida');
+    }
+  },
+};
+
+// ------------------- Servicio de Tipos de Impuestos ---------------------------
+export const taxService = {
+  getTaxTypes: async () => {
+    try {
+      const response = await axiosInstance.get('/taxes');
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al obtener tipos de impuestos');
+    }
+  },
+  createTaxType: async (taxData: { name: string; rate: number; description?: string }) => {
+    try {
+      const response = await axiosInstance.post('/taxes', taxData);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al crear tipo de impuesto');
+    }
+  },
+  updateTaxType: async (id: number, taxData: Partial<{ name: string; rate: number; description?: string }>) => {
+    try {
+      const response = await axiosInstance.put(`/taxes/${id}`, taxData);
+      return response.data;
+    } catch (error) {
+      throw new Error('Error al actualizar tipo de impuesto');
+    }
+  },
+  deleteTaxType: async (id: number) => {
+    try {
+      await axiosInstance.delete(`/taxes/${id}`);
+    } catch (error) {
+      throw new Error('Error al eliminar tipo de impuesto');
+    }
+  },
+};

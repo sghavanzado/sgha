@@ -1,0 +1,19 @@
+[
+  {
+    "sku": "P001",
+    "name": "Laptop",
+    "price": 1200.00,
+    "unit": "pcs",
+    "category": "Electronics",
+    "stock": 50
+  },
+  {
+    "sku": "P002",
+    "name": "Smartphone",
+    "price": 800.00,
+    "unit": "pcs",
+    "category": "Electronics",
+    "stock": 100
+  },
+  // ...8 more products...
+]

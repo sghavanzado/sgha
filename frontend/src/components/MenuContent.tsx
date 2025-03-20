@@ -245,7 +245,7 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
       { id: '10.2', label: 'Mailings', icon: AttachEmailOutlinedIcon, to: '/dashboard' },
       { id: '10.3', label: 'Ferramentas', icon: HandymanOutlinedIcon, to: '/dashboard' },
       { id: '10.4', label: 'Certificados eletrónicos', icon: WorkspacePremiumOutlinedIcon, to: '/dashboard' },
-      { id: '10.5', label: 'Importar', icon: FileUploadOutlinedIcon, to: '/dashboard' },
+      { id: '10.5', label: 'Importar', icon: FileUploadOutlinedIcon, to: '/import' },
       { id: '10.6', label: 'Exportar', icon: FileDownloadOutlinedIcon, to: '/dashboard' },
     ],
   },

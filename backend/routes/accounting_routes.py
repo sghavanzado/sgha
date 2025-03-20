@@ -199,3 +199,57 @@ def create_change_history():
     db.session.add(change_history)
     db.session.commit()
     return jsonify(change_history.to_dict()), 201
+
+from flask import Blueprint, jsonify, request
+from extensions import db
+from models.accounting import AccountingEntry
+from flask_jwt_extended import jwt_required
+
+accounting_bp = Blueprint('accounting', __name__, url_prefix='/accounting')
+
+@accounting_bp.route('/entries', methods=['GET'])
+@jwt_required()
+def get_entries():
+    """Get all accounting entries."""
+    entries = AccountingEntry.query.all()
+    return jsonify([entry.to_dict() for entry in entries]), 200
+
+@accounting_bp.route('/entries', methods=['POST'])
+@jwt_required()
+def create_entry():
+    """Create a new accounting entry."""
+    data = request.get_json()
+    if not data:
+        return jsonify({'message': 'No data provided'}), 400
+
+    entry = AccountingEntry(**data)
+    db.session.add(entry)
+    db.session.commit()
+    return jsonify(entry.to_dict()), 201
+
+@accounting_bp.route('/entries/<int:entry_id>', methods=['PUT'])
+@jwt_required()
+def update_entry(entry_id):
+    """Update an existing accounting entry."""
+    entry = AccountingEntry.query.get(entry_id)
+    if not entry:
+        return jsonify({'message': 'Entry not found'}), 404
+
+    data = request.get_json()
+    for key, value in data.items():
+        setattr(entry, key, value)
+
+    db.session.commit()
+    return jsonify(entry.to_dict()), 200
+
+@accounting_bp.route('/entries/<int:entry_id>', methods=['DELETE'])
+@jwt_required()
+def delete_entry(entry_id):
+    """Delete an accounting entry."""
+    entry = AccountingEntry.query.get(entry_id)
+    if not entry:
+        return jsonify({'message': 'Entry not found'}), 404
+
+    db.session.delete(entry)
+    db.session.commit()
+    return jsonify({'message': 'Entry deleted'}), 200
