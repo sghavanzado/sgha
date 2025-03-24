@@ -124,8 +124,8 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
         label: 'Clientes e Fornecedores',
         icon: PeopleOutlineOutlinedIcon,
         children: [
-          { id: '2.2.1', label: 'Clientes', icon: ReceiptLongOutlinedIcon, to: '/novo-cliente' },
-          { id: '2.2.2', label: 'Fornecedores', icon: StickyNote2Icon, to: '/novo-fornecedor' },
+          { id: '2.2.1', label: 'Clientes', icon: ReceiptLongOutlinedIcon, to: '/clientes' },
+          { id: '2.2.2', label: 'Fornecedores', icon: StickyNote2Icon, to: '/suppliers' },
         ],
       },
       { id: '2.3', label: 'Produtos e Serviços', icon: BlurOnOutlinedIcon, to: '/dashboard', children: [

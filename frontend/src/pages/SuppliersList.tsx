@@ -22,11 +22,11 @@ import {
 import { Add, Edit, Delete, ErrorOutline } from '@mui/icons-material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
-import { Client, clientService } from '../api/apiService';
+import { Supplier, supplierService } from '../api/apiService';
 
-const ClientList: React.FC = () => {
-  const [clients, setClients] = useState<Client[]>([]);
-  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+const SuppliersList: React.FC = () => {
+  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -34,37 +34,37 @@ const ClientList: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadClients = async () => {
+    const loadSuppliers = async () => {
       try {
-        const data = await clientService.getClients();
+        const data = await supplierService.getSuppliers();
         if (Array.isArray(data)) {
-          setClients(data);
+          setSuppliers(data);
         } else {
           setError('Formato de datos inválido recibido del servidor');
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error al cargar los clientes');
+        setError(err instanceof Error ? err.message : 'Error al cargar los proveedores');
       } finally {
         setLoading(false);
       }
     };
 
-    loadClients();
+    loadSuppliers();
   }, []);
 
   const handleDeleteConfirm = async () => {
-    if (!selectedClient?.id) {
-      setError('Cliente no válido para eliminar');
+    if (!selectedSupplier?.id) {
+      setError('Proveedor no válido para eliminar');
       setDeleteDialogOpen(false);
       return;
     }
 
     try {
-      await clientService.deleteClient(selectedClient.id);
-      setClients((prev) => prev.filter((c) => c.id !== selectedClient.id));
+      await supplierService.deleteSupplier(selectedSupplier.id);
+      setSuppliers((prev) => prev.filter((s) => s.id !== selectedSupplier.id));
       setDeleteDialogOpen(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error al eliminar el cliente');
+      setError(err instanceof Error ? err.message : 'Error al eliminar el proveedor');
       setDeleteDialogOpen(false);
     }
   };
@@ -75,7 +75,7 @@ const ClientList: React.FC = () => {
     { field: 'name', headerName: 'Nombre', width: 200 },
     { field: 'email', headerName: 'Correo Electrónico', width: 250 },
     { field: 'phone', headerName: 'Teléfono', width: 150 },
-    { field: 'city', headerName: 'Ciudad', width: 200 },
+    { field: 'address', headerName: 'Dirección', width: 300 },
     {
       field: 'actions',
       headerName: 'Acciones',
@@ -85,7 +85,7 @@ const ClientList: React.FC = () => {
           <Button
             variant="outlined"
             startIcon={<Edit />}
-            onClick={() => navigate(`/editar-cliente/${params.row.id}`)}
+            onClick={() => navigate(`/editar-proveedor/${params.row.id}`)}
             color="primary"
           >
             Editar
@@ -94,7 +94,7 @@ const ClientList: React.FC = () => {
             variant="outlined"
             startIcon={<Delete />}
             onClick={() => {
-              setSelectedClient(params.row);
+              setSelectedSupplier(params.row);
               setDeleteDialogOpen(true);
             }}
             color="error"
@@ -134,8 +134,8 @@ const ClientList: React.FC = () => {
         </Box>
       ) : view === 'list' ? (
         <Grid container spacing={3}>
-          {clients.map((client) => (
-            <Grid item xs={12} sm={6} md={4} key={client.id}>
+          {suppliers.map((supplier) => (
+            <Grid item xs={12} sm={6} md={4} key={supplier.id}>
               <Card
                 sx={{
                   height: '100%',
@@ -152,21 +152,21 @@ const ClientList: React.FC = () => {
               >
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
-                    {client.name}
+                    {supplier.name}
                   </Typography>
 
                   <Box sx={{ mb: 2 }}>
                     <Typography variant="body2" color="text.secondary">
-                      NIF: <strong>{client.nif}</strong>
+                      NIF: <strong>{supplier.nif}</strong>
                     </Typography>
                     <Typography variant="body2">
-                      Correo: <strong>{client.email}</strong>
+                      Correo: <strong>{supplier.email}</strong>
                     </Typography>
                     <Typography variant="body2">
-                      Teléfono: <strong>{client.phone}</strong>
+                      Teléfono: <strong>{supplier.phone}</strong>
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Ciudad: {client.city}
+                      Dirección: {supplier.address}
                     </Typography>
                   </Box>
 
@@ -174,7 +174,7 @@ const ClientList: React.FC = () => {
                     <Button
                       variant="outlined"
                       startIcon={<Edit />}
-                      onClick={() => navigate(`/editar-cliente/${client.id}`)}
+                      onClick={() => navigate(`/editar-proveedor/${supplier.id}`)}
                       color="primary"
                     >
                       Editar
@@ -183,7 +183,7 @@ const ClientList: React.FC = () => {
                       variant="outlined"
                       startIcon={<Delete />}
                       onClick={() => {
-                        setSelectedClient(client);
+                        setSelectedSupplier(supplier);
                         setDeleteDialogOpen(true);
                       }}
                       color="error"
@@ -198,7 +198,7 @@ const ClientList: React.FC = () => {
         </Grid>
       ) : (
         <Box sx={{ height: 600, width: '100%' }}>
-          <DataGrid rows={clients} columns={columns} pageSize={10} rowsPerPageOptions={[10, 20, 50]} />
+          <DataGrid rows={suppliers} columns={columns} pageSize={10} rowsPerPageOptions={[10, 20, 50]} />
         </Box>
       )}
 
@@ -213,8 +213,8 @@ const ClientList: React.FC = () => {
             transform: 'scale(1.1)',
           },
         }}
-        onClick={() => navigate('/novo-cliente')}
-        aria-label="Añadir cliente"
+        onClick={() => navigate('/novo-supplier')}
+        aria-label="Añadir proveedor"
       >
         <Add />
       </Fab>
@@ -230,7 +230,7 @@ const ClientList: React.FC = () => {
         </DialogTitle>
         <DialogContent>
           <Typography>
-            ¿Estás seguro de eliminar el cliente <strong>"{selectedClient?.name}"</strong> (ID: {selectedClient?.id})?
+            ¿Estás seguro de eliminar el proveedor <strong>"{selectedSupplier?.name}"</strong> (ID: {selectedSupplier?.id})?
           </Typography>
         </DialogContent>
         <DialogActions sx={{ p: 3 }}>
@@ -262,4 +262,4 @@ const ClientList: React.FC = () => {
   );
 };
 
-export default ClientList;
+export default SuppliersList;

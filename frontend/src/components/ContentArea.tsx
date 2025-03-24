@@ -9,6 +9,7 @@ import NovoCliente from '../pages/NovoCliente';
 import NovoProducto from '../pages/NovoProducto';
 import Fatura from '../pages/Fatura';
 import ClientList from '../pages/ClientList';
+import SuppliersList from '../pages/SuppliersList';
 import ProductList from '../pages/ProductList';
 import UpdateProduct from '../pages/UpdateProduct';
 import Unauthorized from '../pages/Unauthorized';
@@ -61,6 +62,14 @@ const ContentArea = () => {
           </ProtectedRoute>
         }
       />
+       <Route
+        path="/novo-supplier"
+        element={
+          <ProtectedRoute>
+            <NovoFornecedor  />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/novo-produto"
         element={
@@ -94,10 +103,10 @@ const ContentArea = () => {
         }
       />
       <Route
-        path="/novo-fornecedor"
+        path="/suppliers"
         element={
           <ProtectedRoute>
-            <NovoFornecedor />
+            <SuppliersList />
           </ProtectedRoute>
         }
       />
