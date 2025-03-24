@@ -1,9 +1,11 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from models.accounting import (
-    AccountPlan, AccountingEntry, SupportingDocument, Client, Supplier, Employee,
+    AccountPlan, AccountingEntry, SupportingDocument, Employee,
     InventoryItem, TaxConfig, CostCenter, Project, ChangeHistory
 )
+from models.supplier import Supplier  # Updated import for Supplier
+from models.client import Client  # Ensure Client is imported from models/client.py
 from flask_jwt_extended import jwt_required
 
 accounting_bp = Blueprint('accounting', __name__)

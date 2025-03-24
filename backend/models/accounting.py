@@ -1,6 +1,7 @@
 from extensions import db
 from datetime import datetime
 from models.user import User  # Import User model
+from models.supplier import Supplier  # Updated import for Supplier
 
 # Modelo de Plano de Contas
 class AccountPlan(db.Model):
@@ -60,43 +61,6 @@ class SupportingDocument(db.Model):
             'supplier_client': self.supplier_client,
             'total_value': self.total_value,
             'observations': self.observations,
-        }
-
-# Modelo de Clientes
-class Client(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    nif = db.Column(db.String(20), nullable=False)
-    address = db.Column(db.String(255), nullable=False)
-    city = db.Column(db.String(100), nullable=False)
-    state = db.Column(db.String(100), nullable=False)
-    country = db.Column(db.String(100), nullable=False)
-    phone = db.Column(db.JSON, nullable=False)  # {"phone": "123456789", "email": "example@example.com"}
-    contact_first_name = db.Column(db.String(100), nullable=False)
-    contact_last_name = db.Column(db.String(100), nullable=False)
-    contact_email = db.Column(db.String(100), nullable=False)
-    contact_phone_number = db.Column(db.String(20), nullable=False)
-    payment_terms = db.Column(db.String(100), nullable=True)
-    bank_name = db.Column(db.String(100), nullable=True)
-    iban_number = db.Column(db.String(34), nullable=True)
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'nif': self.nif,
-            'address': self.address,
-            'city': self.city,
-            'state': self.state,
-            'country': self.country,
-            'phone': self.phone,
-            'contact_first_name': self.contact_first_name,
-            'contact_last_name': self.contact_last_name,
-            'contact_email': self.contact_email,
-            'contact_phone_number': self.contact_phone_number,
-            'payment_terms': self.payment_terms,
-            'bank_name': self.bank_name,
-            'iban_number': self.iban_number,
         }
 
 # Modelo de Fornecedores

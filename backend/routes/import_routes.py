@@ -1,11 +1,13 @@
 from flask import Blueprint, request, jsonify
 from extensions import db
 from models.client import Client
-from models.accounting import Supplier, Product, Invoice
+from models.supplier import Supplier
+from models.invoice import Invoice
+from models.product import Product
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required
 
-import_bp = Blueprint('import', __name__, url_prefix='/api/import')
+import_bp = Blueprint('import', __name__, url_prefix='/import')
 
 def validate_json(data, required_keys):
     """Validate JSON structure."""
@@ -84,11 +86,24 @@ def import_invoices():
     if not is_valid:
         return jsonify({'message': error}), 400
 
-    success, error = bulk_insert(Invoice, data)
-    if not success:
-        return jsonify({'message': f"Error importing invoices: {error}"}), 400
+    for invoice_data in data:
+        items = invoice_data.pop('items', [])
+        invoice = Invoice(**invoice_data)
+        db.session.add(invoice)
+        db.session.flush()  # Get the invoice ID for items
 
-    return jsonify({'message': 'Invoices imported successfully'}), 201
+        for item in items:
+            item['invoice_id'] = invoice.id
+            db.session.execute(
+                db.insert(Product).values(**item)
+            )
+
+    try:
+        db.session.commit()
+        return jsonify({'message': 'Invoices imported successfully'}), 201
+    except IntegrityError as e:
+        db.session.rollback()
+        return jsonify({'message': f"Error importing invoices: {str(e)}"}), 400
 
 @import_bp.route('/all', methods=['POST'])
 @jwt_required()
@@ -107,7 +122,23 @@ def import_all():
         elif model_name == 'products':
             success, error = bulk_insert(Product, model_data)
         elif model_name == 'invoices':
-            success, error = bulk_insert(Invoice, model_data)
+            for invoice_data in model_data:
+                items = invoice_data.pop('items', [])
+                invoice = Invoice(**invoice_data)
+                db.session.add(invoice)
+                db.session.flush()
+
+                for item in items:
+                    item['invoice_id'] = invoice.id
+                    db.session.execute(
+                        db.insert(Product).values(**item)
+                    )
+            try:
+                db.session.commit()
+                success, error = True, None
+            except IntegrityError as e:
+                db.session.rollback()
+                success, error = False, str(e)
         else:
             results[model_name] = 'Unknown model'
             continue
@@ -118,3 +149,4 @@ def import_all():
             results[model_name] = f"Error: {error}"
 
     return jsonify(results), 200
+

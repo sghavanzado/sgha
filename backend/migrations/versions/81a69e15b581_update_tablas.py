@@ -1,8 +1,8 @@
-"""Initial migration
+"""Update tablas
 
-Revision ID: 01584ced2d96
+Revision ID: 81a69e15b581
 Revises: 
-Create Date: 2025-03-15 22:35:19.657812
+Create Date: 2025-03-20 20:59:19.089821
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '01584ced2d96'
+revision = '81a69e15b581'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['parent_account_id'], ['account_plan.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('account_code')
+    )
+    op.create_table('accounting_entries',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('description', sa.String(length=255), nullable=False),
+    sa.Column('amount', sa.Float(), nullable=False),
+    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('account_id', sa.Integer(), nullable=False),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('client',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -47,12 +55,40 @@ def upgrade():
     sa.Column('iban_number', sa.String(length=34), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('clients',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('nif', sa.String(length=20), nullable=False),
+    sa.Column('address', sa.String(length=255), nullable=False),
+    sa.Column('city', sa.String(length=100), nullable=True),
+    sa.Column('state', sa.String(length=100), nullable=True),
+    sa.Column('country', sa.String(length=100), nullable=True),
+    sa.Column('phone', sa.String(length=20), nullable=True),
+    sa.Column('email', sa.String(length=100), nullable=True),
+    sa.Column('contact_first_name', sa.String(length=100), nullable=True),
+    sa.Column('contact_last_name', sa.String(length=100), nullable=True),
+    sa.Column('contact_email', sa.String(length=100), nullable=True),
+    sa.Column('contact_phone_number', sa.String(length=20), nullable=True),
+    sa.Column('payment_terms', sa.String(length=100), nullable=True),
+    sa.Column('bank_name', sa.String(length=100), nullable=True),
+    sa.Column('iban_number', sa.String(length=100), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nif')
+    )
     op.create_table('cost_center',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=100), nullable=False),
     sa.Column('associated_code', sa.String(length=50), nullable=False),
     sa.Column('responsible_department', sa.String(length=100), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('countries',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('code', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('code'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('documents',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -89,31 +125,6 @@ def upgrade():
     sa.Column('sale_price', sa.Float(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('invoice',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('invoice_number', sa.String(length=50), nullable=False),
-    sa.Column('issue_date', sa.DateTime(), nullable=False),
-    sa.Column('operation_date', sa.DateTime(), nullable=True),
-    sa.Column('seller_name', sa.String(length=100), nullable=False),
-    sa.Column('seller_nif', sa.String(length=20), nullable=False),
-    sa.Column('seller_address', sa.String(length=255), nullable=False),
-    sa.Column('client_name', sa.String(length=100), nullable=False),
-    sa.Column('client_nif', sa.String(length=20), nullable=True),
-    sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('quantity', sa.Float(), nullable=False),
-    sa.Column('unit_of_measure', sa.String(length=50), nullable=False),
-    sa.Column('unit_price', sa.Float(), nullable=False),
-    sa.Column('taxable_amount', sa.Float(), nullable=False),
-    sa.Column('vat_rate', sa.Float(), nullable=False),
-    sa.Column('vat_amount', sa.Float(), nullable=False),
-    sa.Column('total_amount', sa.Float(), nullable=False),
-    sa.Column('payment_due_date', sa.DateTime(), nullable=True),
-    sa.Column('payment_method', sa.String(length=50), nullable=True),
-    sa.Column('authorization_number', sa.String(length=50), nullable=True),
-    sa.Column('legal_reference', sa.String(length=255), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('invoice_number')
-    )
     op.create_table('permission',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=64), nullable=False),
@@ -137,11 +148,7 @@ def upgrade():
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('unit', sa.String(length=20), nullable=False),
     sa.Column('category', sa.String(length=50), nullable=False),
-    sa.Column('expiration_date', sa.Date(), nullable=True),
-    sa.Column('image_url', sa.String(length=255), nullable=True),
-    sa.Column('attributes', sa.JSON(), nullable=True),
     sa.Column('stock', sa.Integer(), nullable=False),
-    sa.Column('location', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('sku')
     )
@@ -185,6 +192,22 @@ def upgrade():
     sa.Column('payment_terms', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('suppliers',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('nif', sa.String(length=20), nullable=False),
+    sa.Column('address', sa.String(length=255), nullable=False),
+    sa.Column('phone', sa.String(length=20), nullable=True),
+    sa.Column('contact_first_name', sa.String(length=100), nullable=True),
+    sa.Column('contact_last_name', sa.String(length=100), nullable=True),
+    sa.Column('contact_email', sa.String(length=100), nullable=True),
+    sa.Column('contact_phone_number', sa.String(length=20), nullable=True),
+    sa.Column('payment_terms', sa.String(length=100), nullable=True),
+    sa.Column('bank_name', sa.String(length=100), nullable=True),
+    sa.Column('iban_number', sa.String(length=34), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nif')
+    )
     op.create_table('supporting_document',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('document_type', sa.String(length=50), nullable=False),
@@ -203,18 +226,21 @@ def upgrade():
     sa.Column('validity', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('accounting_entry',
+    op.create_table('tax_types',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('entry_date', sa.DateTime(), nullable=False),
-    sa.Column('description', sa.String(length=255), nullable=False),
-    sa.Column('debit_account_id', sa.Integer(), nullable=False),
-    sa.Column('credit_account_id', sa.Integer(), nullable=False),
-    sa.Column('amount', sa.Float(), nullable=False),
-    sa.Column('document_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['credit_account_id'], ['account_plan.id'], ),
-    sa.ForeignKeyConstraint(['debit_account_id'], ['account_plan.id'], ),
-    sa.ForeignKeyConstraint(['document_id'], ['supporting_document.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('rate', sa.Float(), nullable=False),
+    sa.Column('description', sa.String(length=255), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
+    )
+    op.create_table('units_of_measure',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('abbreviation', sa.String(length=10), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('abbreviation'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('inventory',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -239,6 +265,16 @@ def upgrade():
         batch_op.create_index(batch_op.f('ix_inventory_timestamp'), ['timestamp'], unique=False)
         batch_op.create_index('ix_movement_timestamp', ['movement_type', 'timestamp'], unique=False)
 
+    op.create_table('invoices',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('invoice_number', sa.String(length=50), nullable=False),
+    sa.Column('issue_date', sa.DateTime(), nullable=False),
+    sa.Column('client_id', sa.Integer(), nullable=False),
+    sa.Column('total_amount', sa.Float(), nullable=False),
+    sa.ForeignKeyConstraint(['client_id'], ['clients.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('invoice_number')
+    )
     op.create_table('order',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('provider_id', sa.Integer(), nullable=False),
@@ -269,6 +305,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('provinces',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
+    sa.Column('country_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['country_id'], ['countries.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('roles_permissions',
     sa.Column('role_id', sa.Integer(), nullable=False),
     sa.Column('permission_id', sa.Integer(), nullable=False),
@@ -278,30 +321,25 @@ def upgrade():
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=64), nullable=False),
+    sa.Column('username', sa.String(length=64), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password_hash', sa.String(length=512), nullable=False),
     sa.Column('role_id', sa.Integer(), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=True),
-    sa.Column('two_factor_enabled', sa.Boolean(), nullable=True),
     sa.Column('name', sa.String(length=64), nullable=False),
     sa.Column('second_name', sa.String(length=64), nullable=True),
     sa.Column('last_name', sa.String(length=64), nullable=False),
     sa.Column('phone_number', sa.String(length=20), nullable=True),
-    sa.Column('refresh_token', sa.String(length=512), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('last_login', sa.DateTime(), nullable=True),
     sa.Column('login_attempts', sa.Integer(), nullable=True),
     sa.Column('locked_until', sa.DateTime(), nullable=True),
-    sa.Column('secret_2fa', sa.String(length=128), nullable=True),
-    sa.Column('backup_codes', sa.JSON(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     with op.batch_alter_table('user', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_user_email'), ['email'], unique=True)
-        batch_op.create_index(batch_op.f('ix_user_refresh_token'), ['refresh_token'], unique=False)
         batch_op.create_index(batch_op.f('ix_user_username'), ['username'], unique=True)
 
     op.create_table('audit_log',
@@ -335,23 +373,26 @@ def downgrade():
     op.drop_table('audit_log')
     with op.batch_alter_table('user', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_user_username'))
-        batch_op.drop_index(batch_op.f('ix_user_refresh_token'))
         batch_op.drop_index(batch_op.f('ix_user_email'))
 
     op.drop_table('user')
     op.drop_table('roles_permissions')
+    op.drop_table('provinces')
     op.drop_table('product_price_history')
     op.drop_table('price_detail')
     op.drop_table('order')
+    op.drop_table('invoices')
     with op.batch_alter_table('inventory', schema=None) as batch_op:
         batch_op.drop_index('ix_movement_timestamp')
         batch_op.drop_index(batch_op.f('ix_inventory_timestamp'))
         batch_op.drop_index(batch_op.f('ix_inventory_movement_type'))
 
     op.drop_table('inventory')
-    op.drop_table('accounting_entry')
+    op.drop_table('units_of_measure')
+    op.drop_table('tax_types')
     op.drop_table('tax_config')
     op.drop_table('supporting_document')
+    op.drop_table('suppliers')
     op.drop_table('supplier')
     op.drop_table('role')
     op.drop_table('provider')
@@ -359,7 +400,6 @@ def downgrade():
     op.drop_table('products')
     op.drop_table('price_list')
     op.drop_table('permission')
-    op.drop_table('invoice')
     op.drop_table('inventory_item')
     op.drop_table('employee')
     with op.batch_alter_table('documents', schema=None) as batch_op:
@@ -368,7 +408,10 @@ def downgrade():
         batch_op.drop_index('ix_document_type_date')
 
     op.drop_table('documents')
+    op.drop_table('countries')
     op.drop_table('cost_center')
+    op.drop_table('clients')
     op.drop_table('client')
+    op.drop_table('accounting_entries')
     op.drop_table('account_plan')
     # ### end Alembic commands ###

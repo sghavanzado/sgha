@@ -12,7 +12,7 @@ import {
   Alert,
   LinearProgress,
 } from '@mui/material';
-import axios from 'axios';
+import { clientService, supplierService, productService, invoiceService } from '../api/apiService';
 
 const DataImport = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -41,11 +41,28 @@ const DataImport = () => {
       try {
         setLoading(true);
         const jsonData = JSON.parse(e.target?.result as string);
-        const response = await axios.post(`/api/import/${importType}`, jsonData);
-        setSnackbarMessage(response.data.message || 'Importación exitosa.');
+
+        switch (importType) {
+          case 'customers':
+            await clientService.createClient(jsonData);
+            break;
+          case 'suppliers':
+            await supplierService.createSupplier(jsonData);
+            break;
+          case 'products':
+            await productService.createProduct(jsonData);
+            break;
+          case 'invoices':
+            await invoiceService.createInvoice(jsonData);
+            break;
+          default:
+            throw new Error('Tipo de importación no válido.');
+        }
+
+        setSnackbarMessage('Importación exitosa.');
         setSnackbarSeverity('success');
       } catch (error: any) {
-        setSnackbarMessage(error.response?.data?.message || 'Error al importar datos.');
+        setSnackbarMessage(error.message || 'Error al importar datos.');
         setSnackbarSeverity('error');
       } finally {
         setLoading(false);
@@ -76,7 +93,6 @@ const DataImport = () => {
               <MenuItem value="suppliers">Proveedores</MenuItem>
               <MenuItem value="products">Productos</MenuItem>
               <MenuItem value="invoices">Facturas</MenuItem>
-              <MenuItem value="all">Todo</MenuItem>
             </Select>
           </FormControl>
         </Grid>

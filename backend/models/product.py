@@ -6,16 +6,16 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sku = db.Column(db.String(50), unique=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=True)
+    description = db.Column(db.Text, default='')
     price = db.Column(db.Float, nullable=False)
     unit = db.Column(db.String(20), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     expiration_date = db.Column(db.Date, nullable=True)
-    image_url = db.Column(db.String(255), nullable=True)
-    attributes = db.Column(db.JSON, nullable=True)
-    stock = db.Column(db.Integer, default=0, nullable=False)
-    location = db.Column(db.String(255), nullable=True)
-    
+    image_url = db.Column(db.String(255), default='')
+    attributes = db.Column(db.JSON, default={})
+    stock = db.Column(db.Integer, default=0)
+    location = db.Column(db.String(100), default='')
+
     # Relación con Inventory
     inventory_movements = db.relationship('Inventory', back_populates='product')
 
@@ -28,11 +28,11 @@ class Product(db.Model):
             'price': self.price,
             'unit': self.unit,
             'category': self.category,
-            'expiration_date': self.expiration_date,
+            'expiration_date': self.expiration_date.strftime('%Y-%m-%d') if self.expiration_date else None,
             'image_url': self.image_url,
             'attributes': self.attributes,
             'stock': self.stock,
-            'location': self.location,
+            'location': self.location
         }
 
 class ProductPriceHistory(db.Model):

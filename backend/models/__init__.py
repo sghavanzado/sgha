@@ -8,10 +8,11 @@ from .stock_movement import StockMovement
 from .document import Document  # Añadir Document
 from .accounting import (
     AccountPlan, AccountingEntry, SupportingDocument, 
-    Client, Supplier, Employee, InventoryItem, 
+    Supplier, Employee, InventoryItem, 
     TaxConfig, CostCenter, Project, ChangeHistory
 )
 from .invoice import Invoice
+from .client import Client  # Ensure Client is imported from models/client.py
 
 __all__ = [
     'User', 'Role', 'Permission', 'AuditLog',

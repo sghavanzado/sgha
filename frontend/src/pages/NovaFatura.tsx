@@ -96,6 +96,16 @@ const NovaFatura = () => {
     }
   };
 
+  const fetchSuppliers = async () => {
+    try {
+      const response = await axios.get('/suppliers');
+      setSuppliers(Array.isArray(response.data) ? response.data : []); // Ensure response is an array
+    } catch (error) {
+      console.error('Error fetching suppliers:', error);
+      setSuppliers([]); // Fallback to an empty array on error
+    }
+  };
+
   const generateInvoiceNumber = async () => {
     try {
       const response = await axios.get('/api/invoices/next-number');

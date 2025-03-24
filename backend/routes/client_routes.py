@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from extensions import db
-from models.client import Client
+from models.client import Client  # Ensure Client is imported from models.client
 from flask_jwt_extended import jwt_required
+from sqlalchemy.exc import IntegrityError  # Add this import
 
 client_bp = Blueprint('clients', __name__, url_prefix='/clients')
 
@@ -15,15 +16,43 @@ def get_clients():
 @client_bp.route('/', methods=['POST'])
 @jwt_required()
 def create_client():
-    """Create a new client."""
+    """Create a new client or multiple clients."""
     data = request.get_json()
     if not data:
         return jsonify({'message': 'No data provided'}), 400
 
-    client = Client(**data)
-    db.session.add(client)
-    db.session.commit()
-    return jsonify(client.to_dict()), 201
+    if isinstance(data, list):  # Handle bulk creation
+        clients = []
+        for client_data in data:
+            if not isinstance(client_data, dict):  # Ensure each item is a dictionary
+                return jsonify({'message': 'Invalid data format for bulk creation'}), 400
+            try:
+                client = Client(**client_data)
+                db.session.add(client)
+                clients.append(client.to_dict())
+            except IntegrityError as e:  # Handle duplicate key errors
+                db.session.rollback()
+                return jsonify({'message': f"Duplicate entry: {str(e.orig)}"}), 400
+            except Exception as e:
+                db.session.rollback()
+                return jsonify({'message': f"Error creating client: {str(e)}"}), 400
+        db.session.commit()
+        return jsonify({'message': 'Clients created successfully', 'clients': clients}), 201
+
+    elif isinstance(data, dict):  # Handle single creation
+        try:
+            client = Client(**data)
+            db.session.add(client)
+            db.session.commit()
+            return jsonify(client.to_dict()), 201
+        except IntegrityError as e:  # Handle duplicate key errors
+            db.session.rollback()
+            return jsonify({'message': f"Duplicate entry: {str(e.orig)}"}), 400
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'message': f"Error creating client: {str(e)}"}), 400
+
+    return jsonify({'message': 'Invalid data format'}), 400
 
 @client_bp.route('/<int:client_id>', methods=['PUT'])
 @jwt_required()
