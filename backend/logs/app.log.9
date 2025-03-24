@@ -1,4 +1,29 @@
-2025-03-18 12:18:12,176 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-20 20:59:11,589 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 20:59:18,933 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 20:59:18,979 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:111]
+2025-03-20 20:59:18,979 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 20:59:42,770 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 20:59:42,865 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:111]
+2025-03-20 20:59:42,865 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 21:07:32,916 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 21:07:33,045 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
+2025-03-20 21:07:55,602 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 21:07:55,730 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
+2025-03-20 21:37:57,961 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 21:37:58,160 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-20 21:37:58,160 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 22:04:09,559 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 22:04:09,706 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-20 22:04:09,706 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 22:04:27,183 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 22:04:27,339 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-20 22:04:27,340 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 22:04:50,575 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-20 22:04:50,715 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-20 22:04:50,715 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-20 23:07:23,689 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-20 23:07:23,695 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-20 23:34:10,961 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -18,14 +43,16 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
-    if not g.current_user:
-           ^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: current_user
-2025-03-18 12:18:29,370 WARNING: Intento de acceso con token inválido: Invalid crypto padding [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
-2025-03-18 12:19:01,475 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
+    client = Client(**data)
+             ^^^^^^^^^^^^^^
+TypeError: models.client.Client() argument after ** must be a mapping, not list
+2025-03-21 02:12:57,678 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-21 02:12:57,682 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-23 20:37:55,448 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-23 20:37:55,703 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 20:37:55,703 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-23 21:09:27,042 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,13 +72,11 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
-    if not g.current_user:
-           ^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: current_user
-2025-03-18 12:39:21,780 ERROR: Exception on /users/ [GET] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
+    if isinstance(data, list):  # Handle bulk creation
+             ^^^^^^^^^^^^^^
+TypeError: models.client.Client() argument after ** must be a mapping, not list
+2025-03-23 21:30:34,549 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -71,39 +96,10 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/utils/decorators.py", line 12, in wrapper
-    if not g.current_user or not g.current_user.has_permission(permission):
-           ^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/ctx.py", line 56, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: current_user
-2025-03-18 12:39:38,111 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
-2025-03-18 12:39:38,287 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-18 12:39:38,287 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]
-2025-03-18 12:41:41,460 WARNING: Intento de acceso con token inválido: Not enough segments [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
-2025-03-18 16:36:45,744 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-18 16:36:45,749 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-18 16:55:38,667 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-18 18:37:18,975 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-18 18:37:18,980 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-19 13:01:23,415 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-19 13:01:23,419 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-19 23:49:58,652 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-19 23:49:58,658 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-20 00:37:42,806 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
-2025-03-20 00:37:42,974 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 00:37:42,974 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]
-2025-03-20 00:37:47,518 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
-2025-03-20 00:50:21,791 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
-2025-03-20 00:50:21,794 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:61]
-2025-03-20 11:09:44,978 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-20 11:09:44,982 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:69]
-2025-03-20 16:01:29,758 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:38]
-2025-03-20 16:01:29,963 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 16:01:29,963 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:53]
-2025-03-20 17:31:00,670 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 17:31:00,919 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
-2025-03-20 17:33:00,346 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 17:33:00,512 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
-2025-03-20 20:59:11,418 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 20:59:11,589 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:111]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
+    if isinstance(data, list):  # Handle bulk creation
+             ^^^^^^^^^^^^^^
+TypeError: models.client.Client() argument after ** must be a mapping, not list
+2025-03-23 21:35:30,191 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-23 21:35:30,336 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 21:35:30,337 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]

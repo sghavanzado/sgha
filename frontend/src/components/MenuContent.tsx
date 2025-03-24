@@ -129,10 +129,8 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
         ],
       },
       { id: '2.3', label: 'Produtos e Serviços', icon: BlurOnOutlinedIcon, to: '/dashboard', children: [
-          { id: '2.3.1', label: 'Novo Produto', icon: BlurOnOutlinedIcon, to: '/novo-produto' },
-          { id: '2.3.2', label: 'Listagem de Produtos', icon: BlurOnOutlinedIcon, to: '/listagem-produtos' },
-          { id: '2.3.3', label: 'Novo Serviço', icon: BlurOnOutlinedIcon, to: '/novo-servico' },
-          { id: '2.3.4', label: 'Listagem de Serviços', icon: BlurOnOutlinedIcon, to: '/listagem-servicos' },
+          { id: '2.3.1', label: 'Productos', icon: BlurOnOutlinedIcon, to: '/listagem-produtos' },
+          { id: '2.3.2', label: 'Serviços', icon: BlurOnOutlinedIcon, to: '/services' },
       ]},
       { id: '2.4', label: 'Gestão de Pagamentos', icon: CurrencyExchangeOutlinedIcon, to: '/dashboard' },
       { id: '2.5', label: 'Impostos e Descontos', icon: RequestQuoteIcon, to: '/dashboard' },

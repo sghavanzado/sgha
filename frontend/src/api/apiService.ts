@@ -66,6 +66,16 @@ export interface Product {
   location?: string;
 }
 
+export interface Service {
+  id?: number;
+  name: string;
+  description?: string;
+  price: number;
+  category: string;
+  duration?: string;
+  active: boolean;
+}
+
 // ---------------------Servicio de Productos (Completo)--------------------------
 export const productService = {
   createProduct: async (productData: Omit<Product, 'id'>): Promise<Product> => {
@@ -379,5 +389,25 @@ export const taxService = {
     } catch (error) {
       throw new Error('Error al eliminar tipo de impuesto');
     }
+  },
+};
+
+// ------------------- Servicio de Servicios ---------------------------
+export const serviceService = {
+  createService: async (serviceData: Service) => {
+    const response = await axiosInstance.post('/services', serviceData);
+    return response.data;
+  },
+  getServices: async () => {
+    const response = await axiosInstance.get('/services');
+    return response.data;
+  },
+  updateService: async (id: number, serviceData: Partial<Service>) => {
+    const response = await axiosInstance.put(`/services/${id}`, serviceData);
+    return response.data;
+  },
+  deleteService: async (id: number) => {
+    const response = await axiosInstance.delete(`/services/${id}`);
+    return response.data;
   },
 };

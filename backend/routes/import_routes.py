@@ -4,6 +4,7 @@ from models.client import Client
 from models.supplier import Supplier
 from models.invoice import Invoice
 from models.product import Product
+from models.services import Service  # Import Service model
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required
 
@@ -76,6 +77,37 @@ def import_products():
 
     return jsonify({'message': 'Products imported successfully'}), 201
 
+@import_bp.route('/services', methods=['POST'])
+@jwt_required()
+def import_services():
+    """Import services from a JSON payload."""
+    data = request.get_json()
+    if not data or not isinstance(data, list):
+        return jsonify({'message': 'Invalid data format. Expected a list of services.'}), 400
+
+    imported_services = []
+    for service_data in data:
+        try:
+            service = Service(
+                name=service_data['name'],
+                description=service_data.get('description', ''),
+                price=service_data['price'],
+                category=service_data['category'],
+                duration=service_data.get('duration', ''),
+                active=service_data.get('active', True)
+            )
+            db.session.add(service)
+            imported_services.append(service.to_dict())
+        except IntegrityError:
+            db.session.rollback()
+            return jsonify({'message': f"Duplicate entry for service: {service_data['name']}"}), 400
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'message': f"Error importing service: {str(e)}"}), 400
+
+    db.session.commit()
+    return jsonify({'message': 'Services imported successfully', 'services': imported_services}), 201
+
 @import_bp.route('/invoices', methods=['POST'])
 @jwt_required()
 def import_invoices():
@@ -121,6 +153,35 @@ def import_all():
             success, error = bulk_insert(Supplier, model_data)
         elif model_name == 'products':
             success, error = bulk_insert(Product, model_data)
+        elif model_name == 'services':
+            imported_services = []
+            for service_data in model_data:
+                try:
+                    service = Service(
+                        name=service_data['name'],
+                        description=service_data.get('description', ''),
+                        price=service_data['price'],
+                        category=service_data['category'],
+                        duration=service_data.get('duration', ''),
+                        active=service_data.get('active', True)
+                    )
+                    db.session.add(service)
+                    imported_services.append(service.to_dict())
+                except IntegrityError:
+                    db.session.rollback()
+                    success, error = False, f"Duplicate entry for service: {service_data['name']}"
+                    break
+                except Exception as e:
+                    db.session.rollback()
+                    success, error = False, f"Error importing service: {str(e)}"
+                    break
+            else:
+                db.session.commit()
+                success, error = True, None
+            if success:
+                results[model_name] = 'Imported successfully'
+            else:
+                results[model_name] = f"Error: {error}"
         elif model_name == 'invoices':
             for invoice_data in model_data:
                 items = invoice_data.pop('items', [])

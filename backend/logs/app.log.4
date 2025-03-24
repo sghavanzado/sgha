@@ -1,8 +1,15 @@
-2025-03-23 21:45:49,875 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-23 21:45:49,878 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-23 21:54:06,515 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
-2025-03-23 21:54:06,524 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
-2025-03-23 21:57:56,118 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-23 22:21:45,562 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2115, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "suppliers_nif_key"
+DETAIL:  Key (nif)=(111222333) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -22,82 +29,65 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
-    supplier = Supplier(**data)
-               ^^^^^^^^^^^^^^^^
-TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
-2025-03-23 22:02:37,501 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
-    supplier = Supplier(**data)
-               ^^^^^^^^^^^^^^^^
-TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
-2025-03-23 22:05:27,353 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
-TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
-2025-03-23 22:20:15,407 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
-    return jsonify({'message': 'Invalid JSON format'}), 400
-           ^^^^^^^^^^^^^^^^
-TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
-2025-03-23 22:20:25,683 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-23 22:20:25,840 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-23 22:20:25,841 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-23 22:20:31,708 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
-2025-03-23 22:20:31,712 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 43, in create_supplier
+    db.session.commit()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 599, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1841, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2123, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2115, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "suppliers_nif_key"
+DETAIL:  Key (nif)=(111222333) already exists.
+
+[SQL: INSERT INTO suppliers (name, nif, address, phone, contact_first_name, contact_last_name, contact_email, contact_phone_number, payment_terms, bank_name, iban_number) SELECT p0::VARCHAR, p1::VARCHAR, p2::VARCHAR, p3::VARCHAR, p4::VARCHAR, p5::VARCHAR,  ... 2353 characters truncated ... p6, p7, p8, p9, p10, sen_counter) ORDER BY sen_counter RETURNING suppliers.id, suppliers.id AS id__1]
+[parameters: {'iban_number__0': 'US11122233344455566677', 'bank_name__0': 'Wells Fargo', 'contact_first_name__0': 'Alice', 'contact_last_name__0': 'Brown', 'contact_email__0': 'alice.brown@abc.com', 'payment_terms__0': 'Net 45', 'address__0': '789 Maple Ave', 'contact_phone_number__0': '111-222-3333', 'phone__0': '111-222-3333', 'nif__0': '111222333', 'name__0': 'ABC Supplies', 'iban_number__1': 'US44455566677788899900', 'bank_name__1': 'Citibank', 'contact_first_name__1': 'Bob', 'contact_last_name__1': 'Green', 'contact_email__1': 'bob.green@xyz.com', 'payment_terms__1': 'Net 30', 'address__1': '321 Oak St', 'contact_phone_number__1': '444-555-6666', 'phone__1': '444-555-6666', 'nif__1': '444555666', 'name__1': 'XYZ Distributors', 'iban_number__2': 'US77788899900011122233', 'bank_name__2': 'Chase Bank', 'contact_first_name__2': 'Charlie', 'contact_last_name__2': 'Davis', 'contact_email__2': 'charlie.davis@techsolutions.com', 'payment_terms__2': 'Net 60', 'address__2': '123 Tech Blvd', 'contact_phone_number__2': '777-888-9999', 'phone__2': '777-888-9999', 'nif__2': '777888999', 'name__2': 'Tech Solutions', 'iban_number__3': 'US22233344455566677788', 'bank_name__3': 'Bank of America', 'contact_first_name__3': 'Diana', 'contact_last_name__3': 'Evans', 'contact_email__3': 'diana.evans@globaltraders.com', 'payment_terms__3': 'Net 30', 'address__3': '456 Trade St', 'contact_phone_number__3': '222-333-4444', 'phone__3': '222-333-4444', 'nif__3': '222333444', 'name__3': 'Global Traders', 'iban_number__4': 'US55566677788899900011', 'bank_name__4': 'PNC Bank', 'contact_first_name__4': 'Ethan', 'contact_last_name__4': 'Foster', 'contact_email__4': 'ethan.foster@primesupplies.com', 'payment_terms__4': 'Net 15' ... 10 parameters truncated ... 'payment_terms__5': 'Net 45', 'address__5': '321 Elite St', 'contact_phone_number__5': '888-999-0000', 'phone__5': '888-999-0000', 'nif__5': '888999000', 'name__5': 'Elite Distributors', 'iban_number__6': 'US33344455566677788899', 'bank_name__6': 'Regions Bank', 'contact_first_name__6': 'George', 'contact_last_name__6': 'Harris', 'contact_email__6': 'george.harris@nextgensupplies.com', 'payment_terms__6': 'Net 30', 'address__6': '654 NextGen Blvd', 'contact_phone_number__6': '333-444-5555', 'phone__6': '333-444-5555', 'nif__6': '333444555', 'name__6': 'NextGen Supplies', 'iban_number__7': 'US66677788899900011122', 'bank_name__7': 'First Republic Bank', 'contact_first_name__7': 'Hannah', 'contact_last_name__7': 'Johnson', 'contact_email__7': 'hannah.johnson@pioneertraders.com', 'payment_terms__7': 'Net 60', 'address__7': '987 Pioneer Ave', 'contact_phone_number__7': '666-777-8888', 'phone__7': '666-777-8888', 'nif__7': '666777888', 'name__7': 'Pioneer Traders', 'iban_number__8': 'US99900011122233344455', 'bank_name__8': 'Union Bank', 'contact_first_name__8': 'Ian', 'contact_last_name__8': 'King', 'contact_email__8': 'ian.king@universalsupplies.com', 'payment_terms__8': 'Net 30', 'address__8': '123 Universal Blvd', 'contact_phone_number__8': '999-000-1111', 'phone__8': '999-000-1111', 'nif__8': '999000111', 'name__8': 'Universal Supplies', 'iban_number__9': 'US11122233344455566677', 'bank_name__9': 'Bank of Texas', 'contact_first_name__9': 'Jack', 'contact_last_name__9': 'Lewis', 'contact_email__9': 'jack.lewis@alphadistributors.com', 'payment_terms__9': 'Net 15', 'address__9': '456 Alpha St', 'contact_phone_number__9': '111-222-3333', 'phone__9': '111-222-3333', 'nif__9': '111222333', 'name__9': 'Alpha Distributors'}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

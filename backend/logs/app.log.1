@@ -1,93 +1,73 @@
-2025-03-23 22:39:59,956 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2115, in _exec_insertmany_context
-    dialect.do_execute(
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
-    cursor.execute(statement, parameters)
-psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "suppliers_nif_key"
-DETAIL:  Key (nif)=(111222333) already exists.
-
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
-    return current_app.ensure_sync(fn)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 43, in create_supplier
-    db.session.commit()
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/scoping.py", line 599, in commit
-    return self._proxied.commit()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
-    trans.commit(_to_root=True)
-  File "<string>", line 2, in commit
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
-    self._prepare_impl()
-  File "<string>", line 2, in _prepare_impl
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
-    ret_value = fn(self, *arg, **kw)
-                ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
-    self.session.flush()
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
-    self._flush(objects)
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
-    with util.safe_reraise():
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
-    flush_context.execute()
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
-    rec.execute(self)
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
-    _emit_insert_statements(
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
-    result = connection.execute(
-             ^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
-    return meth(
-           ^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1841, in _execute_context
-    return self._exec_insertmany_context(dialect, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2123, in _exec_insertmany_context
-    self._handle_dbapi_exception(
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2115, in _exec_insertmany_context
-    dialect.do_execute(
-  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "suppliers_nif_key"
-DETAIL:  Key (nif)=(111222333) already exists.
-
-[SQL: INSERT INTO suppliers (name, nif, address, phone, contact_first_name, contact_last_name, contact_email, contact_phone_number, payment_terms, bank_name, iban_number) SELECT p0::VARCHAR, p1::VARCHAR, p2::VARCHAR, p3::VARCHAR, p4::VARCHAR, p5::VARCHAR,  ... 2353 characters truncated ... p6, p7, p8, p9, p10, sen_counter) ORDER BY sen_counter RETURNING suppliers.id, suppliers.id AS id__1]
-[parameters: {'name__0': 'ABC Supplies', 'phone__0': '111-222-3333', 'contact_last_name__0': 'Brown', 'nif__0': '111222333', 'address__0': '789 Maple Ave', 'iban_number__0': 'US11122233344455566677', 'contact_email__0': 'alice.brown@abc.com', 'payment_terms__0': 'Net 45', 'bank_name__0': 'Wells Fargo', 'contact_phone_number__0': '111-222-3333', 'contact_first_name__0': 'Alice', 'name__1': 'XYZ Distributors', 'phone__1': '444-555-6666', 'contact_last_name__1': 'Green', 'nif__1': '444555666', 'address__1': '321 Oak St', 'iban_number__1': 'US44455566677788899900', 'contact_email__1': 'bob.green@xyz.com', 'payment_terms__1': 'Net 30', 'bank_name__1': 'Citibank', 'contact_phone_number__1': '444-555-6666', 'contact_first_name__1': 'Bob', 'name__2': 'Tech Solutions', 'phone__2': '777-888-9999', 'contact_last_name__2': 'Davis', 'nif__2': '777888999', 'address__2': '123 Tech Blvd', 'iban_number__2': 'US77788899900011122233', 'contact_email__2': 'charlie.davis@techsolutions.com', 'payment_terms__2': 'Net 60', 'bank_name__2': 'Chase Bank', 'contact_phone_number__2': '777-888-9999', 'contact_first_name__2': 'Charlie', 'name__3': 'Global Traders', 'phone__3': '222-333-4444', 'contact_last_name__3': 'Evans', 'nif__3': '222333444', 'address__3': '456 Trade St', 'iban_number__3': 'US22233344455566677788', 'contact_email__3': 'diana.evans@globaltraders.com', 'payment_terms__3': 'Net 30', 'bank_name__3': 'Bank of America', 'contact_phone_number__3': '222-333-4444', 'contact_first_name__3': 'Diana', 'name__4': 'Prime Supplies', 'phone__4': '555-666-7777', 'contact_last_name__4': 'Foster', 'nif__4': '555666777', 'address__4': '789 Prime Ave', 'iban_number__4': 'US55566677788899900011' ... 10 parameters truncated ... 'iban_number__5': 'US88899900011122233344', 'contact_email__5': 'fiona.green@elitedistributors.com', 'payment_terms__5': 'Net 45', 'bank_name__5': 'TD Bank', 'contact_phone_number__5': '888-999-0000', 'contact_first_name__5': 'Fiona', 'name__6': 'NextGen Supplies', 'phone__6': '333-444-5555', 'contact_last_name__6': 'Harris', 'nif__6': '333444555', 'address__6': '654 NextGen Blvd', 'iban_number__6': 'US33344455566677788899', 'contact_email__6': 'george.harris@nextgensupplies.com', 'payment_terms__6': 'Net 30', 'bank_name__6': 'Regions Bank', 'contact_phone_number__6': '333-444-5555', 'contact_first_name__6': 'George', 'name__7': 'Pioneer Traders', 'phone__7': '666-777-8888', 'contact_last_name__7': 'Johnson', 'nif__7': '666777888', 'address__7': '987 Pioneer Ave', 'iban_number__7': 'US66677788899900011122', 'contact_email__7': 'hannah.johnson@pioneertraders.com', 'payment_terms__7': 'Net 60', 'bank_name__7': 'First Republic Bank', 'contact_phone_number__7': '666-777-8888', 'contact_first_name__7': 'Hannah', 'name__8': 'Universal Supplies', 'phone__8': '999-000-1111', 'contact_last_name__8': 'King', 'nif__8': '999000111', 'address__8': '123 Universal Blvd', 'iban_number__8': 'US99900011122233344455', 'contact_email__8': 'ian.king@universalsupplies.com', 'payment_terms__8': 'Net 30', 'bank_name__8': 'Union Bank', 'contact_phone_number__8': '999-000-1111', 'contact_first_name__8': 'Ian', 'name__9': 'Alpha Distributors', 'phone__9': '111-222-3333', 'contact_last_name__9': 'Lewis', 'nif__9': '111222333', 'address__9': '456 Alpha St', 'iban_number__9': 'US11122233344455566677', 'contact_email__9': 'jack.lewis@alphadistributors.com', 'payment_terms__9': 'Net 15', 'bank_name__9': 'Bank of Texas', 'contact_phone_number__9': '111-222-3333', 'contact_first_name__9': 'Jack'}]
-(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-03-23 22:42:48,240 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-23 22:42:48,407 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 22:42:48,408 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-23 22:42:55,706 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 22:42:55,712 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 22:47:12,095 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-23 22:47:12,258 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 22:47:12,258 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-23 22:47:22,632 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 22:47:22,636 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 00:15:08,758 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 00:15:08,766 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 14:19:46,186 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 14:19:46,344 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 14:19:46,344 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 14:20:04,836 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 14:20:05,038 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 14:20:05,038 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 14:23:29,118 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 14:23:29,345 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 14:23:29,346 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 14:24:37,017 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 14:24:37,021 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 14:25:28,347 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 14:25:28,499 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 14:25:28,500 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 14:33:16,536 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 14:33:16,542 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 14:59:43,551 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 14:59:43,695 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 14:59:43,696 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 14:59:53,434 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 14:59:53,437 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-24 16:10:54,964 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 16:10:54,969 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 16:10:55,040 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 16:10:55,043 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 16:10:55,051 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 16:10:55,051 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 17:01:49,637 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 17:01:49,646 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 19:42:15,137 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 19:42:15,144 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 20:31:29,273 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 20:31:29,277 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
+2025-03-24 22:06:36,504 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:06:36,662 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:06:36,662 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:07:11,386 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:07:11,519 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:07:11,519 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:10:34,999 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:10:35,218 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:10:35,218 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:10:48,893 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:10:49,036 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:10:49,036 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:37,631 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:11:37,781 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:11:37,782 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:45,149 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:11:45,232 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:11:45,232 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:48,204 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:11:48,295 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:11:48,295 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:52,959 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:11:53,040 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:11:53,041 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:55,097 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-24 22:11:55,180 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-24 22:11:55,180 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-24 22:11:56,905 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]

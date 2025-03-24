@@ -13,13 +13,14 @@ import uuid
 from routes import (
     auth, user_routes, product_routes, inventory_routes,
     inventory_reports_routes, order_routes, price_routes, warehouse_routes, role_routes,
-    invoice_routes, accounting_routes, client_routes  # Import client routes
+    invoice_routes, accounting_routes, client_routes, services_routes  # Import client routes
 )
 from routes.location_routes import location_bp  # Import location routes
 from routes.unit_routes import unit_bp  # Import unit routes
 from routes.tax_routes import tax_bp  # Import tax routes
 from routes.import_routes import import_bp  # Import import routes
 from routes.supplier_routes import supplier_bp  # Updated import for supplier routes
+from routes.services_routes import service_bp
 
 def create_app():
     # Crear instancia de Flask
@@ -131,6 +132,7 @@ def register_blueprints(app):
     app.register_blueprint(auth.auth_bp, url_prefix='/auth')
     app.register_blueprint(user_routes.user_bp, url_prefix='/users')
     app.register_blueprint(product_routes.product_bp, url_prefix='/products')
+    app.register_blueprint(services_routes.service_bp, url_prefix='/services')
     app.register_blueprint(inventory_routes.inventory_bp, url_prefix='/inventory')
     app.register_blueprint(supplier_bp, url_prefix='/suppliers')  # Updated supplier routes
     app.register_blueprint(order_routes.order_bp, url_prefix='/orders')

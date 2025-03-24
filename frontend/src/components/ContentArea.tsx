@@ -18,6 +18,8 @@ import UserProfile from '../pages/UserProfile';
 import InvoiceManagement from '../pages/InvoiceManagement';
 import Settings from '../pages/Settings'; // Import the Settings page
 import DataImport from '../pages/DataImport'; // Import DataImport page
+import ServicesList from '../pages/ServicesList'; // Import ServicesList page
+import NovoServices from '../pages/NovoServices'; // Import NovoServices page
 
 const ContentArea = () => {
   return (
@@ -147,6 +149,30 @@ const ContentArea = () => {
         element={
           <ProtectedRoute>
             <DataImport />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/services"
+        element={
+          <ProtectedRoute>
+            <ServicesList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/new-service"
+        element={
+          <ProtectedRoute>
+            <NovoServices />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/edit-service/:id"
+        element={
+          <ProtectedRoute>
+            <NovoServices />
           </ProtectedRoute>
         }
       />

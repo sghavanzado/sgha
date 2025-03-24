@@ -12,7 +12,7 @@ import {
   Alert,
   LinearProgress,
 } from '@mui/material';
-import { clientService, supplierService, productService, invoiceService } from '../api/apiService';
+import { clientService, supplierService, productService, invoiceService, serviceService } from '../api/apiService';
 
 const DataImport = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -55,6 +55,9 @@ const DataImport = () => {
           case 'invoices':
             await invoiceService.createInvoice(jsonData);
             break;
+          case 'services':
+            await serviceService.createService(jsonData);
+            break;
           default:
             throw new Error('Tipo de importación no válido.');
         }
@@ -93,6 +96,7 @@ const DataImport = () => {
               <MenuItem value="suppliers">Proveedores</MenuItem>
               <MenuItem value="products">Productos</MenuItem>
               <MenuItem value="invoices">Facturas</MenuItem>
+              <MenuItem value="services">Servicios</MenuItem>
             </Select>
           </FormControl>
         </Grid>
