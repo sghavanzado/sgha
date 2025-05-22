@@ -21,6 +21,22 @@ from routes.tax_routes import tax_bp  # Import tax routes
 from routes.import_routes import import_bp  # Import import routes
 from routes.supplier_routes import supplier_bp  # Updated import for supplier routes
 from routes.services_routes import service_bp
+from routes.receipt_routes import receipt_bp
+from routes.debit_note_routes import debit_note_bp
+from routes.global_invoice_routes import global_invoice_bp
+from routes.self_billing_receipt_routes import self_billing_receipt_bp
+from routes.transport_guide_routes import transport_guide_bp
+from routes.shipping_guide_routes import shipping_guide_bp
+from routes.order_note_routes import order_note_bp
+from routes.delivery_note_routes import delivery_note_bp
+from routes.payments_made_report import payments_made_report_bp
+from routes.payments_pending_report import payments_pending_report_bp
+from routes.item_billing_report import item_billing_report_bp
+from routes.tax_map_report import tax_map_report_bp
+from routes.billing_by_employee_report import billing_by_employee_report_bp
+from routes.billing_report import billing_report_bp
+from routes.tax_settlement_report import tax_settlement_report_bp
+from routes.client_account_statement_report import client_account_statement_report_bp
 
 def create_app():
     # Crear instancia de Flask
@@ -146,7 +162,23 @@ def register_blueprints(app):
     app.register_blueprint(location_bp, url_prefix='/locations')  # Register location routes
     app.register_blueprint(unit_bp, url_prefix='/units')  # Register unit routes
     app.register_blueprint(tax_bp, url_prefix='/taxes')  # Register tax routes
-    app.register_blueprint(import_bp, url_prefix='/api/import')  # Register import routes
+    app.register_blueprint(import_bp, url_prefix='/import')  # Register import routes
+    app.register_blueprint(receipt_bp, url_prefix='/receipts')
+    app.register_blueprint(debit_note_bp, url_prefix='/debit-notes')
+    app.register_blueprint(global_invoice_bp, url_prefix='/global-invoices')
+    app.register_blueprint(self_billing_receipt_bp, url_prefix='/self-billing-receipts')
+    app.register_blueprint(transport_guide_bp, url_prefix='/transport-guides')
+    app.register_blueprint(shipping_guide_bp, url_prefix='/shipping-guides')
+    app.register_blueprint(order_note_bp, url_prefix='/order-notes')
+    app.register_blueprint(delivery_note_bp, url_prefix='/delivery-notes')
+    app.register_blueprint(payments_made_report_bp)
+    app.register_blueprint(payments_pending_report_bp)
+    app.register_blueprint(item_billing_report_bp)
+    app.register_blueprint(tax_map_report_bp)
+    app.register_blueprint(billing_by_employee_report_bp)
+    app.register_blueprint(billing_report_bp)
+    app.register_blueprint(tax_settlement_report_bp)
+    app.register_blueprint(client_account_statement_report_bp)
 
 if __name__ == '__main__':
     app = create_app()

@@ -3,6 +3,21 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Dashboard from '../pages/Dashboard';
 import NovaFatura from '../pages/NovaFatura';
+import Recibo from '../pages/Recibo';
+import NotaDebito from '../pages/NotaDebito';
+import Autofacturacao from '../pages/Autofacturacao';
+import FacturaGlobal from '../pages/FacturaGlobal';
+import RelatorioFacturacao from '../pages/RelatorioFacturacao';
+import FacturacaoPorItem from '../pages/FacturacaoPorItem';
+import LiquidacaoImposto from '../pages/LiquidacaoImposto';
+import ContaCorrenteCliente from '../pages/ContaCorrenteCliente';
+import PagamentosEmFalta from '../pages/PagamentosEmFalta';
+import PagamentosEfectuados from '../pages/PagamentosEfectuados';
+import MapaImpostos from '../pages/MapaImpostos';
+import RelatorioFacturacaoGestores from '../pages/RelatorioFacturacaoGestores';
+
+import GuiaRemessa from '../pages/GuiaRemessa';
+import GuiaTransporte from '../pages/GuiaTransporte';
 import NovaFaturaProforma from '../pages/NovaFaturaProforma';
 import NovoFornecedor from '../pages/NovoFornecedor';
 import NovoCliente from '../pages/NovoCliente';
@@ -40,6 +55,123 @@ const ContentArea = () => {
           </ProtectedRoute>
         }
       />
+       <Route
+        path="/factura-recibo"
+        element={
+          <ProtectedRoute>
+            <Recibo />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/nota-debito"
+        element={
+          <ProtectedRoute>
+            <NotaDebito/>
+          </ProtectedRoute>
+        }
+      />
+         <Route
+        path="/autofacturacao"
+        element={
+          <ProtectedRoute>
+            <Autofacturacao/>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/factura-global"
+        element={
+          <ProtectedRoute>
+            <FacturaGlobal />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/guia-remessa"
+        element={
+          <ProtectedRoute>
+            <GuiaRemessa />
+          </ProtectedRoute>
+        }
+        />
+      <Route
+        path="/guia-transporte"
+        element={
+          <ProtectedRoute>
+            <GuiaTransporte />
+          </ProtectedRoute>
+        }
+        />
+        
+         <Route
+        path="/relatorio-facturas"
+        element={
+          <ProtectedRoute>
+            <RelatorioFacturacao />
+          </ProtectedRoute>
+        }
+        />
+        <Route
+        path="/facturas-item"
+        element={
+          <ProtectedRoute>
+            <FacturacaoPorItem />
+          </ProtectedRoute>
+        }
+        />
+        <Route
+        path="/liquidacao-impostos"
+        element={
+          <ProtectedRoute>
+            <LiquidacaoImposto />
+          </ProtectedRoute>
+        }
+        />
+        <Route
+        path="/contas-cliente"
+        element={
+          <ProtectedRoute>
+            <ContaCorrenteCliente/>
+          </ProtectedRoute>
+        }
+        />
+        <Route
+        path="/pagamentos-falta"
+        element={
+          <ProtectedRoute>
+            <PagamentosEmFalta  />
+          </ProtectedRoute>
+        }
+        />
+        <Route
+        path="/pagamentos-efectuados"
+        element={
+          <ProtectedRoute>
+            <PagamentosEfectuados />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+        path="/mapa-impostos"
+        element={
+          <ProtectedRoute>
+            <MapaImpostos />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+        path="/facturas-gestor"
+        element={
+          <ProtectedRoute>
+            <RelatorioFacturacaoGestores />
+          </ProtectedRoute>
+        }
+        />
+      
+    
       <Route
         path="/invoice-management"
         element={

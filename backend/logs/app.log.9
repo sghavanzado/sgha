@@ -1,29 +1,8 @@
-2025-03-20 20:59:11,589 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 20:59:18,933 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 20:59:18,979 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:111]
-2025-03-20 20:59:18,979 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 20:59:42,770 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 20:59:42,865 WARNING: Permission table does not exist. Skipping permission initialization. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:111]
-2025-03-20 20:59:42,865 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 21:07:32,916 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 21:07:33,045 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
-2025-03-20 21:07:55,602 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 21:07:55,730 ERROR: Error inicializando permisos: Multiple classes found for path "Client" in the registry of this declarative base. Please use a fully module-qualified path. [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:59]
-2025-03-20 21:37:57,961 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 21:37:58,160 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 21:37:58,160 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 22:04:09,559 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 22:04:09,706 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 22:04:09,706 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 22:04:27,183 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 22:04:27,339 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 22:04:27,340 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 22:04:50,575 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-20 22:04:50,715 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-20 22:04:50,715 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-20 23:07:23,689 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
-2025-03-20 23:07:23,695 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
-2025-03-20 23:34:10,961 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+2025-03-23 21:45:49,875 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 21:45:49,878 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-23 21:54:06,515 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 21:54:06,524 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 21:57:56,118 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -43,16 +22,11 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
-    client = Client(**data)
-             ^^^^^^^^^^^^^^
-TypeError: models.client.Client() argument after ** must be a mapping, not list
-2025-03-21 02:12:57,678 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
-2025-03-21 02:12:57,682 WARNING: Token expirado para el usuario: 1 [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:73]
-2025-03-23 20:37:55,448 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-23 20:37:55,703 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-23 20:37:55,703 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
-2025-03-23 21:09:27,042 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
+    supplier = Supplier(**data)
+               ^^^^^^^^^^^^^^^^
+TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
+2025-03-23 22:02:37,501 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -72,11 +46,11 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
-    if isinstance(data, list):  # Handle bulk creation
-             ^^^^^^^^^^^^^^
-TypeError: models.client.Client() argument after ** must be a mapping, not list
-2025-03-23 21:30:34,549 ERROR: Exception on /clients/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
+    supplier = Supplier(**data)
+               ^^^^^^^^^^^^^^^^
+TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
+2025-03-23 22:05:27,353 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -96,10 +70,34 @@ Traceback (most recent call last):
   File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
     return current_app.ensure_sync(fn)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/client_routes.py", line 23, in create_client
-    if isinstance(data, list):  # Handle bulk creation
-             ^^^^^^^^^^^^^^
-TypeError: models.client.Client() argument after ** must be a mapping, not list
-2025-03-23 21:35:30,191 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
-2025-03-23 21:35:30,336 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
-2025-03-23 21:35:30,337 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
+TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
+2025-03-23 22:20:15,407 ERROR: Exception on /suppliers/ [POST] [in /Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/.virtualenvs/sgha/lib/python3.12/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mcc/Documents/Develop/backup/sgha/backend/routes/supplier_routes.py", line 23, in create_supplier
+    return jsonify({'message': 'Invalid JSON format'}), 400
+           ^^^^^^^^^^^^^^^^
+TypeError: models.supplier.Supplier() argument after ** must be a mapping, not list
+2025-03-23 22:20:25,683 INFO: Inicio de la aplicación [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:42]
+2025-03-23 22:20:25,840 INFO: Permissions and roles initialized successfully. [in /Users/mcc/Documents/Develop/backup/sgha/backend/models/user.py:139]
+2025-03-23 22:20:25,841 INFO: Permisos y roles inicializados correctamente [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:57]
+2025-03-23 22:20:31,708 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]
+2025-03-23 22:20:31,712 WARNING: Intento de acceso con token inválido: Signature verification failed [in /Users/mcc/Documents/Develop/backup/sgha/backend/app.py:65]

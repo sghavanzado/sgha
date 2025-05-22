@@ -24,6 +24,7 @@ import FlipOutlinedIcon from '@mui/icons-material/FlipOutlined';
 import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
 import EventRepeatOutlinedIcon from '@mui/icons-material/EventRepeatOutlined';
 import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
@@ -113,27 +114,50 @@ const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
         to: '/fatura',
         children: [
           { id: '2.1.1', label: 'Nova Factura', icon: ReceiptLongOutlinedIcon, to: '/nova-fatura' },
-          { id: '2.1.2', label: 'Facturas Proformas', icon: StickyNote2Icon, to: '/nova-proforma' },
-          { id: '2.1.3', label: 'Envio de facturas', icon: MailOutlineOutlinedIcon, to: '/dashboard' },
-          { id: '2.1.4', label: 'Histórico e acompanhamento', icon: UpdateOutlinedIcon, to: '/dashboard' },
-          { id: '2.1.5', label: 'Lembretes automáticos', icon: StickyNote2OutlinedIcon, to: '/dashboard' },
+          { id: '2.1.2', label: 'Factura Proforma', icon: StickyNote2Icon, to: '/nova-proforma' },
+          { id: '2.1.3', label: 'Factura Recibo', icon: DescriptionOutlinedIcon, to: '/factura-recibo' },
+          { id: '2.1.4', label: 'Nota Recibo', icon: DescriptionOutlinedIcon, to: '/nota-debito' },
+          { id: '2.1.5', label: 'Autofacturacao', icon: DescriptionOutlinedIcon, to: '/autofacturacao' },
+          { id: '2.1.6', label: 'Factura Global', icon: DescriptionOutlinedIcon, to: '/factura-global' },
+          { id: '2.1.7', label: 'Guia Remessa', icon: DescriptionOutlinedIcon, to: '/guia-remessa' },
+          { id: '2.1.8', label: 'Guia Transporte', icon: DescriptionOutlinedIcon, to: '/guia-transporte' },
+          { id: '2.1.9', label: 'Envio de facturas', icon: MailOutlineOutlinedIcon, to: '/dashboard' },
+          { id: '2.1.10', label: 'Histórico e acompanhamento', icon: UpdateOutlinedIcon, to: '/dashboard' },
+          { id: '2.1.11', label: 'Lembretes automáticos', icon: StickyNote2OutlinedIcon, to: '/dashboard' },
+        ],
+      },
+       {
+        id: '2.2',
+        label: 'Relatórios',
+        icon: ReceiptLongOutlinedIcon,
+        to: '/relatorios',
+        children: [
+          { id: '2.2.1', label: 'Relatório de Facturação', icon: ReceiptLongOutlinedIcon, to: '/relatorio-facturas' },
+          { id: '2.2.2', label: 'Facturação por Item', icon: StickyNote2Icon, to: '/facturas-item' },
+          { id: '2.2.3', label: 'Conta corrente de cliente', icon: DescriptionOutlinedIcon, to: '/contas-cliente' },
+          { id: '2.2.4', label: 'Pagamentos em Falta', icon: DescriptionOutlinedIcon, to: '/pagamentos-falta' },
+          { id: '2.2.5', label: 'Liquidação de Impostos', icon: DescriptionOutlinedIcon, to: '/liquidacao-impostos' },
+          { id: '2.2.6', label: 'Mapa de Impostos', icon: DescriptionOutlinedIcon, to: '/mapa-impostos'},
+          { id: '2.2.7', label: 'Relatório de Facturação por Gestores', icon: DescriptionOutlinedIcon, to: '/facturas-gestor' },
+          { id: '2.2.8', label: 'Pagamentos Efectuados (Recibos)', icon: DescriptionOutlinedIcon, to: '/pagamentos-efectuados' },
+
         ],
       },
       {
-        id: '2.2',
+        id: '2.3',
         label: 'Clientes e Fornecedores',
         icon: PeopleOutlineOutlinedIcon,
         children: [
-          { id: '2.2.1', label: 'Clientes', icon: ReceiptLongOutlinedIcon, to: '/clientes' },
-          { id: '2.2.2', label: 'Fornecedores', icon: StickyNote2Icon, to: '/suppliers' },
+          { id: '2.3.1', label: 'Clientes', icon: ReceiptLongOutlinedIcon, to: '/clientes' },
+          { id: '2.3.2', label: 'Fornecedores', icon: StickyNote2Icon, to: '/suppliers' },
         ],
       },
-      { id: '2.3', label: 'Produtos e Serviços', icon: BlurOnOutlinedIcon, to: '/dashboard', children: [
-          { id: '2.3.1', label: 'Productos', icon: BlurOnOutlinedIcon, to: '/listagem-produtos' },
-          { id: '2.3.2', label: 'Serviços', icon: BlurOnOutlinedIcon, to: '/services' },
+      { id: '2.4', label: 'Produtos e Serviços', icon: BlurOnOutlinedIcon, to: '/dashboard', children: [
+          { id: '2.4.1', label: 'Productos', icon: BlurOnOutlinedIcon, to: '/listagem-produtos' },
+          { id: '2.4.2', label: 'Serviços', icon: BlurOnOutlinedIcon, to: '/services' },
       ]},
-      { id: '2.4', label: 'Gestão de Pagamentos', icon: CurrencyExchangeOutlinedIcon, to: '/dashboard' },
-      { id: '2.5', label: 'Impostos e Descontos', icon: RequestQuoteIcon, to: '/dashboard' },
+      { id: '2.5', label: 'Gestão de Pagamentos', icon: CurrencyExchangeOutlinedIcon, to: '/dashboard' },
+      { id: '2.6', label: 'Impostos e Descontos', icon: RequestQuoteIcon, to: '/dashboard' },
     ],
   },
   {
